@@ -116,12 +116,13 @@ namespace shippingapi.Client
         {
             UserAgent = "OpenAPI-Generator/2.0.0/csharp";
             BasePath = "https://api-sandbox.pitneybowes.com/shippingservices";
+            
             DefaultHeader = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
 
             // Setting Timeout has side effects (forces ApiClient creation).
-            Timeout = 100000;
+            Timeout = 55000;
         }
 
         /// <summary>
@@ -448,5 +449,29 @@ namespace shippingapi.Client
         }
 
         #endregion Methods
+
+        /// <summary>
+        /// Gets or sets the OAuth authentication API key.
+        /// </summary>
+        /// <value>
+        /// The o authentication API key.
+        /// </value>
+        public String OAuthApiKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the OAuth authentication Secret.
+        /// </summary>
+        /// <value>
+        /// The o authentication seret.
+        /// </value>
+        public String OAuthSecret { get; set; }
+
+        /// <summary>
+        /// Gets or sets the o authentication link.
+        /// </summary>
+        /// <value>
+        /// The o authentication link.
+        /// </value>
+        public String OAuthServiceLink { get; set; }
     }
 }

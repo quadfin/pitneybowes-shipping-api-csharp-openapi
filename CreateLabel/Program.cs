@@ -11,9 +11,12 @@ namespace CreateLabel
     {
         static void Main(string[] args)
         {
-            Configuration.Default.BasePath = "https://api-qa.pitneybowes.com/shippingservices";
-            // Configure OAuth2 access token for authorization: oAuth2ClientCredentials
-            Configuration.Default.AccessToken = "RMNYtnpFFpi9OUp4ptnHLVh9vnXV";
+            Configuration.Default.BasePath = "https://api-sandbox.pitneybowes.com/shippingservices";
+
+            Configuration.Default.OAuthApiKey = "<API_KEY_REPLACE>";
+            Configuration.Default.OAuthSecret = "<API_SECRET_REPLACE>";
+           
+
 
             DateTime dt = DateTime.Now;
 

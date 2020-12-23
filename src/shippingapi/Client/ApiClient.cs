@@ -37,14 +37,74 @@ namespace shippingapi.Client
         /// Allows for extending request processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
-        partial void InterceptRequest(IRestRequest request);
+        IRestRequest InterceptRequest(IRestRequest request)
+        {
+
+            List<Parameter> list = request.Parameters.FindAll(e => e.Name.Equals(HttpRequestHeader.Authorization));
+
+            if (list.Count < 1)
+            {
+                GenerateAndSetAccessToken(Configuration.OAuthApiKey, Configuration.OAuthSecret);
+                Parameter param = new Parameter();
+                param.Name = HttpRequestHeader.Authorization.ToString();
+                param.Value = "Bearer " + Configuration.AccessToken;
+                param.Type = ParameterType.HttpHeader;
+                request.Parameters.Add(param);
+            }
+
+
+            return request;
+        }
 
         /// <summary>
         /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
         /// <param name="response">The RestSharp response object</param>
-        partial void InterceptResponse(IRestRequest request, IRestResponse response);
+        /// <summary>
+        /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
+        /// </summary>
+        /// <param name="request">The RestSharp request object</param>
+        /// <param name="response">The RestSharp response object</param>
+        IRestResponse InterceptResponse(IRestRequest request, IRestResponse response)
+        {
+            RestClient client = new RestClient();
+            if (response.StatusCode == HttpStatusCode.Unauthorized)
+            {
+
+                Errors errors = (Errors)JsonConvert.DeserializeObject(response.Content, typeof(Errors));
+
+                foreach (Error error in errors.errors)
+                {
+                    if (error.errorCode.Equals("PB-APIM-ERR-1003"))
+                    {
+
+                       GenerateAndSetAccessToken(Configuration.OAuthApiKey, Configuration.OAuthSecret);
+                        
+
+                        foreach (Parameter parameter in request.Parameters)
+                        {
+                            if (parameter.Name.Equals(HttpRequestHeader.Authorization))
+                            {
+                                request.Parameters.Remove(parameter);
+
+                                Parameter param = new Parameter();
+                                param.Name = HttpRequestHeader.Authorization.ToString();
+                                param.Value = "Bearer " + Configuration.AccessToken;
+
+                                request.Parameters.Add(param);
+
+                            }
+                        }
+                        response = client.Execute(request);
+
+                        break;
+                    }
+                }
+
+            }
+            return response;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" /> class
@@ -530,5 +590,79 @@ namespace shippingapi.Client
         {
             return value is IList || value is ICollection;
         }
+
+
+        public void GenerateAndSetAccessToken(string apiKey, string secret)
+        {
+            if (apiKey == null)
+                throw new ApiException(400, "Missing required parameter 'OAuthApiKey' when Generating OAuth Token");
+
+            if (secret == null)
+                throw new ApiException(400, "Missing required parameter 'OAuthApiSecret' when Generating OAuth Token");
+
+            Uri uri = new Uri(Configuration.BasePath);
+            Configuration.OAuthServiceLink = "https://" + uri.Host + "/oauth/token";
+
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            WebClient client = new WebClient();
+            String response = String.Empty;
+            OAuthResponse oAuthResponse = null;
+
+            String authHeader = "Basic " + Base64Encode(apiKey + ":" + secret);
+            client.Headers.Add(HttpRequestHeader.Authorization, authHeader);
+            try
+            {
+                response = client.UploadString(Configuration.OAuthServiceLink, "grant_type=client_credentials");
+            }
+            catch (WebException e)
+            {
+
+                throw new ApiException(Convert.ToInt32(e.Status), e.Message);
+            }
+
+            try
+            {
+
+                oAuthResponse = (OAuthResponse)JsonConvert.DeserializeObject(response, typeof(OAuthResponse));
+                Configuration.AccessToken = oAuthResponse.access_token;
+            }
+            catch (Exception e)
+            {
+                throw new ApiException(0, e.Message);
+            }
+
+
+        }
+    }
+
+    /// <summary>
+    /// Represnets OAuth Response from OAuth service.
+    /// </summary>
+    public class OAuthResponse
+    {
+        public string access_token { get; set; }
+        public string tokenType { get; set; }
+        public string issuedAt { get; set; }
+        public string expiresIn { get; set; }
+        public string clientID { get; set; }
+        public string org { get; set; }
+    }
+
+    /// <summary>
+    /// This class represents the model of the indivusual error in list of error reposponse.
+    /// </summary>
+    public class Error
+    {
+        public string errorCode { get; set; }
+        public string errorDescription { get; set; }
+    }
+
+    /// <summary>
+    /// This class reporesents model of error reponse recieved from shippig API.
+    /// </summary>
+    public class Errors
+    {
+        public List<Error> errors { get; set; }
     }
 }

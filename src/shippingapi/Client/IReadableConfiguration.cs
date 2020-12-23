@@ -22,7 +22,7 @@ namespace shippingapi.Client
         /// Gets the access token.
         /// </summary>
         /// <value>Access token.</value>
-        string AccessToken { get; }
+        string AccessToken { set;get; }
 
         /// <summary>
         /// Gets the API key.
@@ -90,5 +90,29 @@ namespace shippingapi.Client
         /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
         /// <returns>API key with prefix.</returns>
         string GetApiKeyWithPrefix(string apiKeyIdentifier);
+
+        /// <summary>
+        /// Gets or sets the OAuth authentication API key.
+        /// </summary>
+        /// <value>
+        /// The o authentication API key.
+        /// </value>
+         string OAuthApiKey { get; set; }
+
+        /// <summary>
+        /// Gets or sets the OAuth authentication Secret.
+        /// </summary>
+        /// <value>
+        /// The o authentication seret.
+        /// </value>
+         string OAuthSecret { get; set; }
+
+        /// <summary>
+        /// Gets or sets the o authentication link.
+        /// </summary>
+        /// <value>
+        /// The o authentication link.
+        /// </value>
+         string OAuthServiceLink { get; set; }
     }
 }
