@@ -15,9 +15,10 @@ Contact: support@pb.com
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>shippingapi</RootNamespace>
-    <AssemblyName>shippingapi</AssemblyName>
+    <AssemblyName>shippingapiv2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,7 +28,8 @@ Contact: support@pb.com
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\shippingapi.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\shippingapiv2.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +38,8 @@ Contact: support@pb.com
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\shippingapi.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\shippingapiv2.xml</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -65,10 +68,170 @@ Contact: support@pb.com
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="**\*.cs" Exclude="obj\**" />
+    <Compile Include="Api\AddressValidationApi.cs" />
+    <Compile Include="Api\CarrierInfoApi.cs" />
+    <Compile Include="Api\ContainerApi.cs" />
+    <Compile Include="Api\CrossBorderQuotesApi.cs" />
+    <Compile Include="Api\ManifestsApi.cs" />
+    <Compile Include="Api\ParcelProtectionApi.cs" />
+    <Compile Include="Api\PickupApi.cs" />
+    <Compile Include="Api\RateParcelsApi.cs" />
+    <Compile Include="Api\ShipmentApi.cs" />
+    <Compile Include="Api\TrackingApi.cs" />
+    <Compile Include="Api\TransactionReportsApi.cs" />
+    <Compile Include="Client\ApiClient.cs" />
+    <Compile Include="Client\ApiException.cs" />
+    <Compile Include="Client\ApiResponse.cs" />
+    <Compile Include="Client\Configuration.cs" />
+    <Compile Include="Client\ExceptionFactory.cs" />
+    <Compile Include="Client\GlobalConfiguration.cs" />
+    <Compile Include="Client\IApiAccessor.cs" />
+    <Compile Include="Client\IReadableConfiguration.cs" />
+    <Compile Include="Client\OpenAPIDateConverter.cs" />
+    <Compile Include="Model\AdditionalAddress.cs" />
+    <Compile Include="Model\Address.cs" />
+    <Compile Include="Model\AddressSuggestionResponse.cs" />
+    <Compile Include="Model\AddressSuggestionResponseSuggestions.cs" />
+    <Compile Include="Model\AddressVerifySuggest.cs" />
+    <Compile Include="Model\AddTrackingEvents.cs" />
+    <Compile Include="Model\AddTrackingEventsEvents.cs" />
+    <Compile Include="Model\AddTrackingEventsReferences.cs" />
+    <Compile Include="Model\BatteryDetails.cs" />
+    <Compile Include="Model\CancelShipment.cs" />
+    <Compile Include="Model\Carrier.cs" />
+    <Compile Include="Model\CarrierFacilityRequest.cs" />
+    <Compile Include="Model\CarrierFacilityRequestAddress.cs" />
+    <Compile Include="Model\CarrierFacilityResponse.cs" />
+    <Compile Include="Model\CarrierFacilityResponseCarrierFacilityOptions.cs" />
+    <Compile Include="Model\CarrierFacilityResponseCarrierFacilitySuggestions.cs" />
+    <Compile Include="Model\CarrierFacilityResponseFacilityHours.cs" />
+    <Compile Include="Model\CarrierFacilityResponseFacilityTimings.cs" />
+    <Compile Include="Model\CarrierPayment.cs" />
+    <Compile Include="Model\CarrierRule.cs" />
+    <Compile Include="Model\CommodityInfo.cs" />
+    <Compile Include="Model\ContainerDetails.cs" />
+    <Compile Include="Model\ContainerManifestResponse.cs" />
+    <Compile Include="Model\ContainerManifestResponseData.cs" />
+    <Compile Include="Model\CrossBorderQuotesErrors.cs" />
+    <Compile Include="Model\CrossBorderQuotesErrorsErrors.cs" />
+    <Compile Include="Model\CrossBorderQuotesErrorsErrorsErrors.cs" />
+    <Compile Include="Model\CrossBorderQuotesErrorsQuote.cs" />
+    <Compile Include="Model\CrossBorderQuotesErrorsQuoteLines.cs" />
+    <Compile Include="Model\CrossBorderQuotesErrorsUnitErrors.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequest.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestAttributes.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestBasketItems.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestCategories.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestDescriptions.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestIdentifiers.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestItemDimension.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestPricing.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestPricingCodPrice.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestRates.cs" />
+    <Compile Include="Model\CrossBorderQuotesRequestUnitWeight.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponse.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponseLineRates.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponseQuote.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponseQuoteLines.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponseTotalRates.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponseUnitRates.cs" />
+    <Compile Include="Model\CrossBorderQuotesResponseUnitRatesDeliveryCommitment.cs" />
+    <Compile Include="Model\Customs.cs" />
+    <Compile Include="Model\CustomsInfo.cs" />
+    <Compile Include="Model\CustomsItem.cs" />
+    <Compile Include="Model\DeliveryCommitment.cs" />
+    <Compile Include="Model\DimensionRules.cs" />
+    <Compile Include="Model\DimensionRulesMaxParcelDimensions.cs" />
+    <Compile Include="Model\DimensionRulesMinParcelDimensions.cs" />
+    <Compile Include="Model\Discount.cs" />
+    <Compile Include="Model\DocTabItem.cs" />
+    <Compile Include="Model\Document.cs" />
+    <Compile Include="Model\DocumentPage.cs" />
+    <Compile Include="Model\Errors.cs" />
+    <Compile Include="Model\HazmatDetails.cs" />
+    <Compile Include="Model\InfectiousSubstanceContact.cs" />
+    <Compile Include="Model\InlineResponse200.cs" />
+    <Compile Include="Model\InlineResponse2001.cs" />
+    <Compile Include="Model\InlineResponse2002.cs" />
+    <Compile Include="Model\ISOCountryCode.cs" />
+    <Compile Include="Model\Manifest.cs" />
+    <Compile Include="Model\PageRealTransactionDetailReport.cs" />
+    <Compile Include="Model\Parameter.cs" />
+    <Compile Include="Model\Parcel.cs" />
+    <Compile Include="Model\ParcelDimension.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequest.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequestShipmentInfo.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequestShipmentInfoConsigneeInfo.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequestShipmentInfoParcelInfo.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequestShipmentInfoParcelInfoCommodityList.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequestShipmentInfoShipperInfo.cs" />
+    <Compile Include="Model\ParcelProtectionCreateRequestShipmentInfoShipperInfoAddress.cs" />
+    <Compile Include="Model\ParcelProtectionCreateResponse.cs" />
+    <Compile Include="Model\ParcelProtectionCreateResponseParcelProtectionFeesBreakup.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponse.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponseContent.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponsePolicyDetails.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponseShipmentDetails.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponseShipperInfo.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponseShipperInfoAddress.cs" />
+    <Compile Include="Model\ParcelProtectionPolicyResponseSort.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequest.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequestShipmentInfo.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequestShipmentInfoConsigneeInfo.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequestShipmentInfoParcelInfo.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequestShipmentInfoParcelInfoCommodityList.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequestShipmentInfoShipperInfo.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteRequestShipmentInfoShipperInfoAddress.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteResponse.cs" />
+    <Compile Include="Model\ParcelProtectionQuoteResponseParcelProtectionFeesBreakup.cs" />
+    <Compile Include="Model\ParcelType.cs" />
+    <Compile Include="Model\ParcelTypeRules.cs" />
+    <Compile Include="Model\ParcelWeight.cs" />
+    <Compile Include="Model\PrerequisiteRules.cs" />
+    <Compile Include="Model\RadioActiveParcelDimension.cs" />
+    <Compile Include="Model\RadioActivityDetail.cs" />
+    <Compile Include="Model\RadioNuclideDetail.cs" />
+    <Compile Include="Model\Rate.cs" />
+    <Compile Include="Model\RealTransactionDetailReport.cs" />
+    <Compile Include="Model\SchedulePickup.cs" />
+    <Compile Include="Model\SchedulePickupPickupSummary.cs" />
+    <Compile Include="Model\SchedulePickupResponse.cs" />
+    <Compile Include="Model\SchedulePickupTotalWeight.cs" />
+    <Compile Include="Model\SearchCriteria.cs" />
+    <Compile Include="Model\Services.cs" />
+    <Compile Include="Model\ServicesParameterRule.cs" />
+    <Compile Include="Model\Shipment.cs" />
+    <Compile Include="Model\Signatory.cs" />
+    <Compile Include="Model\SpecialService.cs" />
+    <Compile Include="Model\SpecialServiceCodes.cs" />
+    <Compile Include="Model\SpecialServicesRule.cs" />
+    <Compile Include="Model\Surcharge.cs" />
+    <Compile Include="Model\Tax.cs" />
+    <Compile Include="Model\Trackable.cs" />
+    <Compile Include="Model\TrackingAddress.cs" />
+    <Compile Include="Model\TrackingResponse.cs" />
+    <Compile Include="Model\TrackingResponseScanDetailsList.cs" />
+    <Compile Include="Model\UnitOfDimension.cs" />
+    <Compile Include="Model\UnitOfWeight.cs" />
+    <Compile Include="Model\VoidParcelProtectionRequest.cs" />
+    <Compile Include="Model\VoidParcelProtectionResponse.cs" />
+    <Compile Include="Model\WeightRules.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="package.nuspec" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

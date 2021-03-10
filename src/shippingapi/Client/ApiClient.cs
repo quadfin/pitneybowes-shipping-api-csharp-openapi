@@ -40,7 +40,7 @@ namespace shippingapi.Client
         IRestRequest InterceptRequest(IRestRequest request)
         {
 
-            List<Parameter> list = request.Parameters.FindAll(e => e.Name.Equals(HttpRequestHeader.Authorization));
+            List<Parameter> list = request.Parameters.FindAll(e => e.Name.ToLower().Equals(HttpRequestHeader.Authorization.ToString().ToLower()));
 
             if (list.Count < 1)
             {
@@ -70,6 +70,7 @@ namespace shippingapi.Client
         {
             RestClient client = new RestClient();
             if (response.StatusCode == HttpStatusCode.Unauthorized)
+           
             {
 
                 Errors errors = (Errors)JsonConvert.DeserializeObject(response.Content, typeof(Errors));
@@ -77,6 +78,7 @@ namespace shippingapi.Client
                 foreach (Error error in errors.errors)
                 {
                     if (error.errorCode.Equals("PB-APIM-ERR-1003"))
+                    
                     {
 
                        GenerateAndSetAccessToken(Configuration.OAuthApiKey, Configuration.OAuthSecret);
@@ -84,7 +86,7 @@ namespace shippingapi.Client
 
                         foreach (Parameter parameter in request.Parameters)
                         {
-                            if (parameter.Name.Equals(HttpRequestHeader.Authorization))
+                            if (parameter.Name.ToLower().Equals(HttpRequestHeader.Authorization.ToString().ToLower()))
                             {
                                 request.Parameters.Remove(parameter);
 
@@ -610,7 +612,7 @@ namespace shippingapi.Client
             OAuthResponse oAuthResponse = null;
 
             String authHeader = "Basic " + Base64Encode(apiKey + ":" + secret);
-            client.Headers.Add(HttpRequestHeader.Authorization, authHeader);
+            client.Headers.Add(HttpRequestHeader.Authorization.ToString(), authHeader);
             try
             {
                 response = client.UploadString(Configuration.OAuthServiceLink, "grant_type=client_credentials");
