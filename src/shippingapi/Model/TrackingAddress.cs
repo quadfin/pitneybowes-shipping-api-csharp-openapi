@@ -41,7 +41,7 @@ namespace shippingapi.Model
         /// <param name="stateOrProvince">stateOrProvince.</param>
         /// <param name="postalCode">postalCode.</param>
         /// <param name="country">country.</param>
-        public TrackingAddress(string name = default(string), string address1 = default(string), string address2 = default(string), string address3 = default(string), string city = default(string), string stateOrProvince = default(string), int postalCode = default(int), string country = default(string))
+        public TrackingAddress(string name = default(string), string address1 = default(string), string address2 = default(string), string address3 = default(string), string city = default(string), string stateOrProvince = default(string), string postalCode = default(string), string country = default(string))
         {
             this.Name = name;
             this.Address1 = address1;
@@ -93,7 +93,7 @@ namespace shippingapi.Model
         /// Gets or Sets PostalCode
         /// </summary>
         [DataMember(Name="postalCode", EmitDefaultValue=false)]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Country

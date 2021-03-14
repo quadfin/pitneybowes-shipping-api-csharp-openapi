@@ -52,7 +52,19 @@ namespace shippingapi.Model
             /// Enum Manifest for value: Manifest
             /// </summary>
             [EnumMember(Value = "Manifest")]
-            Manifest = 3
+            Manifest = 3,
+
+            /// <summary>
+            /// Enum OutForDelivery for value: OutForDelivery
+            /// </summary>
+            [EnumMember(Value = "OutForDelivery")]
+            OutForDelivery = 4,
+
+            /// <summary>
+            /// Enum Acceptance for value: Acceptance
+            /// </summary>
+            [EnumMember(Value = "Acceptance")]
+            Acceptance = 5
 
         }
 
@@ -111,7 +123,7 @@ namespace shippingapi.Model
         /// <param name="destinationAddress">destinationAddress.</param>
         /// <param name="senderAddress">senderAddress.</param>
         /// <param name="scanDetailsList">scanDetailsList.</param>
-        public TrackingResponse(int packageCount = default(int), string carrier = default(string), string trackingNumber = default(string), string referenceNumber = default(string), StatusEnum? status = default(StatusEnum?), DateTime updatedDate = default(DateTime), string updatedTime = default(string), DateTime shipDate = default(DateTime), DateTime estimatedDeliveryDate = default(DateTime), string estimatedDeliveryTime = default(string), DateTime deliveryDate = default(DateTime), string deliveryTime = default(string), string deliveryLocation = default(string), string deliveryLocationDescription = default(string), string signedBy = default(string), int weight = default(int), WeightOUMEnum? weightOUM = default(WeightOUMEnum?), DateTime reattemptDate = default(DateTime), string reattemptTime = default(string), TrackingAddress destinationAddress = default(TrackingAddress), TrackingAddress senderAddress = default(TrackingAddress), List<TrackingResponseScanDetailsList> scanDetailsList = default(List<TrackingResponseScanDetailsList>))
+        public TrackingResponse(int packageCount = default(int), string carrier = default(string), string trackingNumber = default(string), string referenceNumber = default(string), StatusEnum? status = default(StatusEnum?), string updatedDate = default(string), string updatedTime = default(string), string shipDate = default(string), string estimatedDeliveryDate = default(string), string estimatedDeliveryTime = default(string), string deliveryDate = default(string), string deliveryTime = default(string), string deliveryLocation = default(string), string deliveryLocationDescription = default(string), string signedBy = default(string), int weight = default(int), WeightOUMEnum? weightOUM = default(WeightOUMEnum?), string reattemptDate = default(string), string reattemptTime = default(string), TrackingAddress destinationAddress = default(TrackingAddress), TrackingAddress senderAddress = default(TrackingAddress), List<TrackingResponseScanDetailsList> scanDetailsList = default(List<TrackingResponseScanDetailsList>))
         {
             this.PackageCount = packageCount;
             this.Carrier = carrier;
@@ -166,8 +178,7 @@ namespace shippingapi.Model
         /// Gets or Sets UpdatedDate
         /// </summary>
         [DataMember(Name="updatedDate", EmitDefaultValue=false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime UpdatedDate { get; set; }
+        public string UpdatedDate { get; set; }
 
         /// <summary>
         /// Gets or Sets UpdatedTime
@@ -179,15 +190,13 @@ namespace shippingapi.Model
         /// Gets or Sets ShipDate
         /// </summary>
         [DataMember(Name="shipDate", EmitDefaultValue=false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime ShipDate { get; set; }
+        public string ShipDate { get; set; }
 
         /// <summary>
         /// Gets or Sets EstimatedDeliveryDate
         /// </summary>
         [DataMember(Name="estimatedDeliveryDate", EmitDefaultValue=false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime EstimatedDeliveryDate { get; set; }
+        public string EstimatedDeliveryDate { get; set; }
 
         /// <summary>
         /// Gets or Sets EstimatedDeliveryTime
@@ -199,8 +208,7 @@ namespace shippingapi.Model
         /// Gets or Sets DeliveryDate
         /// </summary>
         [DataMember(Name="deliveryDate", EmitDefaultValue=false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime DeliveryDate { get; set; }
+        public string DeliveryDate { get; set; }
 
         /// <summary>
         /// Gets or Sets DeliveryTime
@@ -237,8 +245,7 @@ namespace shippingapi.Model
         /// Gets or Sets ReattemptDate
         /// </summary>
         [DataMember(Name="reattemptDate", EmitDefaultValue=false)]
-        [JsonConverter(typeof(OpenAPIDateConverter))]
-        public DateTime ReattemptDate { get; set; }
+        public string ReattemptDate { get; set; }
 
         /// <summary>
         /// Gets or Sets ReattemptTime

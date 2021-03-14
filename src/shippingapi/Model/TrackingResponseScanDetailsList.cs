@@ -42,7 +42,7 @@ namespace shippingapi.Model
         /// <param name="scanType">scanType.</param>
         /// <param name="scanDescription">scanDescription.</param>
         /// <param name="packageStatus">packageStatus.</param>
-        public TrackingResponseScanDetailsList(DateTime eventDate = default(DateTime), string eventTime = default(string), string eventCity = default(string), string eventStateOrProvince = default(string), int postalCode = default(int), string country = default(string), string scanType = default(string), string scanDescription = default(string), string packageStatus = default(string))
+        public TrackingResponseScanDetailsList(DateTime eventDate = default(DateTime), string eventTime = default(string), string eventCity = default(string), string eventStateOrProvince = default(string), string postalCode = default(string), string country = default(string), string scanType = default(string), string scanDescription = default(string), string packageStatus = default(string))
         {
             this.EventDate = eventDate;
             this.EventTime = eventTime;
@@ -84,7 +84,7 @@ namespace shippingapi.Model
         /// Gets or Sets PostalCode
         /// </summary>
         [DataMember(Name="postalCode", EmitDefaultValue=false)]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         /// <summary>
         /// Gets or Sets Country
