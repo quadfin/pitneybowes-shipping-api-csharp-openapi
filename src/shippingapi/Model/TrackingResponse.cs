@@ -64,7 +64,42 @@ namespace shippingapi.Model
             /// Enum Acceptance for value: Acceptance
             /// </summary>
             [EnumMember(Value = "Acceptance")]
-            Acceptance = 5
+            Acceptance = 5,
+
+            /// <summary>
+            /// Enum Acceptance for value: DeliveryAttempt
+            /// </summary>
+            [EnumMember(Value = "DeliveryAttempt")]
+            DeliveryAttempt = 6,
+
+            /// <summary>
+            /// Enum Acceptance for value: Exception
+            /// </summary>
+            [EnumMember(Value = "Exception")]
+            Exception = 7,
+
+            /// <summary>
+            /// Enum Acceptance for value: PickedUp
+            /// </summary>
+            [EnumMember(Value = "PickedUp")]
+            PickedUp = 8,
+
+            /// <summary>
+            /// Enum Acceptance for value: PickupMissed
+            /// </summary>
+            [EnumMember(Value = "PickupMissed")]
+            PickupMissed = 9,
+
+            /// <summary>
+            /// Enum Acceptance for value: ReadyForPickup
+            /// </summary>
+            [EnumMember(Value = "ReadyForPickup")]
+            ReadyForPickup = 10,
+            /// <summary>
+            /// Enum Acceptance for value: ReturnToSender
+            /// </summary>
+            [EnumMember(Value = "ReturnToSender")]
+            ReturnToSender = 11,
 
         }
 
@@ -123,7 +158,7 @@ namespace shippingapi.Model
         /// <param name="destinationAddress">destinationAddress.</param>
         /// <param name="senderAddress">senderAddress.</param>
         /// <param name="scanDetailsList">scanDetailsList.</param>
-        public TrackingResponse(int packageCount = default(int), string carrier = default(string), string trackingNumber = default(string), string referenceNumber = default(string), StatusEnum? status = default(StatusEnum?), string updatedDate = default(string), string updatedTime = default(string), string shipDate = default(string), string estimatedDeliveryDate = default(string), string estimatedDeliveryTime = default(string), string deliveryDate = default(string), string deliveryTime = default(string), string deliveryLocation = default(string), string deliveryLocationDescription = default(string), string signedBy = default(string), int weight = default(int), WeightOUMEnum? weightOUM = default(WeightOUMEnum?), string reattemptDate = default(string), string reattemptTime = default(string), TrackingAddress destinationAddress = default(TrackingAddress), TrackingAddress senderAddress = default(TrackingAddress), List<TrackingResponseScanDetailsList> scanDetailsList = default(List<TrackingResponseScanDetailsList>))
+        public TrackingResponse(int packageCount = default(int), string carrier = default(string), string trackingNumber = default(string), string referenceNumber = default(string), StatusEnum? status = default(StatusEnum?), string updatedDate = default(string), string updatedTime = default(string), string shipDate = default(string), string estimatedDeliveryDate = default(string), string estimatedDeliveryTime = default(string), string deliveryDate = default(string), string deliveryTime = default(string), string deliveryLocation = default(string), string deliveryLocationDescription = default(string), string signedBy = default(string), double weight = default(int), WeightOUMEnum? weightOUM = default(WeightOUMEnum?), string reattemptDate = default(string), string reattemptTime = default(string), TrackingAddress destinationAddress = default(TrackingAddress), TrackingAddress senderAddress = default(TrackingAddress), List<TrackingResponseScanDetailsList> scanDetailsList = default(List<TrackingResponseScanDetailsList>))
         {
             this.PackageCount = packageCount;
             this.Carrier = carrier;
@@ -238,7 +273,7 @@ namespace shippingapi.Model
         /// Gets or Sets Weight
         /// </summary>
         [DataMember(Name="weight", EmitDefaultValue=false)]
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
 
         /// <summary>
