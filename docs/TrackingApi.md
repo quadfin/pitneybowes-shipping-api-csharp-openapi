@@ -1,6 +1,6 @@
 # shippingapi.Api.TrackingApi
 
-All URIs are relative to *https://api-sandbox.pitneybowes.com/shippingservices*
+All URIs are relative to *https://shipping-api-sandbox.pitneybowes.com/shippingservices*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -30,7 +30,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api-sandbox.pitneybowes.com/shippingservices";
+            Configuration.Default.BasePath = "https://shipping-api-sandbox.pitneybowes.com/shippingservices";
             // Configure OAuth2 access token for authorization: oAuth2ClientCredentials
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -109,7 +109,7 @@ namespace Example
     {
         public static void Main()
         {
-            Configuration.Default.BasePath = "https://api-sandbox.pitneybowes.com/shippingservices";
+            Configuration.Default.BasePath = "https://shipping-api-sandbox.pitneybowes.com/shippingservices";
             // Configure OAuth2 access token for authorization: oAuth2ClientCredentials
             Configuration.Default.AccessToken = "YOUR_ACCESS_TOKEN";
 
