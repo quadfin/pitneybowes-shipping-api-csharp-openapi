@@ -106,7 +106,7 @@ namespace Example
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api-sandbox.pitneybowes.com/shippingservices*
+All URIs are relative to *https://shipping-api-sandbox.pitneybowes.com/shippingservices*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

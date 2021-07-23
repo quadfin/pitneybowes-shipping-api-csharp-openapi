@@ -11,7 +11,7 @@ namespace CreateLabel
     {
         static void Main(string[] args)
         {
-            Configuration.Default.BasePath = "https://api-sandbox.pitneybowes.com/shippingservices";
+            Configuration.Default.BasePath = "https://shipping-api-sandbox.pitneybowes.com/shippingservices";
 
             Configuration.Default.OAuthApiKey = "<API_KEY_REPLACE>";
             Configuration.Default.OAuthSecret = "<API_SECRET_REPLACE>";
