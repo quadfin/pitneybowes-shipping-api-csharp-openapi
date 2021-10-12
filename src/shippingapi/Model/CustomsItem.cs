@@ -28,7 +28,7 @@ namespace shippingapi.Model
     /// CustomsItem
     /// </summary>
     [DataContract]
-    public partial class CustomsItem :  IEquatable<CustomsItem>, IValidatableObject
+    public partial class CustomsItem : IEquatable<CustomsItem>, IValidatableObject
     {
         /// <summary>
         /// Defines NetCostMethod
@@ -53,7 +53,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets NetCostMethod
         /// </summary>
-        [DataMember(Name="netCostMethod", EmitDefaultValue=false)]
+        [DataMember(Name = "netCostMethod", EmitDefaultValue = false)]
         public NetCostMethodEnum? NetCostMethod { get; set; }
         /// <summary>
         /// Defines PreferenceCriterion
@@ -102,7 +102,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets PreferenceCriterion
         /// </summary>
-        [DataMember(Name="preferenceCriterion", EmitDefaultValue=false)]
+        [DataMember(Name = "preferenceCriterion", EmitDefaultValue = false)]
         public PreferenceCriterionEnum? PreferenceCriterion { get; set; }
         /// <summary>
         /// Defines ProducerDetermination
@@ -139,7 +139,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets ProducerDetermination
         /// </summary>
-        [DataMember(Name="producerDetermination", EmitDefaultValue=false)]
+        [DataMember(Name = "producerDetermination", EmitDefaultValue = false)]
         public ProducerDeterminationEnum? ProducerDetermination { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomsItem" /> class.
@@ -149,8 +149,18 @@ namespace shippingapi.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomsItem" /> class.
         /// </summary>
+        /// <param name="brand">brand.</param>
+        /// <param name="condition">condition.</param>
         /// <param name="description">description (required).</param>
+        /// <param name="eccn">eccn.</param>
+        /// <param name="hazmats">hazmats.</param>
         /// <param name="hSTariffCode">hSTariffCode.</param>
+        /// <param name="hSTariffCodeCountry">hSTariffCodeCountry.</param>
+        /// <param name="identifiers">identifiers.</param>
+        /// <param name="imageURL">imageURL.</param>
+        /// <param name="itemDimension">itemDimension.</param>
+        /// <param name="itemId">itemId (required).</param>
+        /// <param name="manufacturer">manufacturer.</param>
         /// <param name="netCostMethod">netCostMethod.</param>
         /// <param name="originCountryCode">originCountryCode (required).</param>
         /// <param name="originStateProvince">originStateProvince.</param>
@@ -162,7 +172,8 @@ namespace shippingapi.Model
         /// <param name="quantityUOM">quantityUOM.</param>
         /// <param name="unitPrice">unitPrice (required).</param>
         /// <param name="unitWeight">unitWeight (required).</param>
-        public CustomsItem(string description = default(string), string hSTariffCode = default(string), NetCostMethodEnum? netCostMethod = default(NetCostMethodEnum?), string originCountryCode = default(string), string originStateProvince = default(string), PreferenceCriterionEnum? preferenceCriterion = default(PreferenceCriterionEnum?), Address producerAddress = default(Address), ProducerDeterminationEnum? producerDetermination = default(ProducerDeterminationEnum?), string producerId = default(string), int quantity = default(int), string quantityUOM = default(string), decimal unitPrice = default(decimal), ParcelWeight unitWeight = default(ParcelWeight))
+        /// <param name="url">url.</param>
+        public CustomsItem(string brand = default(string), string condition = default(string), string description = default(string), string eccn = default(string), List<string> hazmats = default(List<string>), string hSTariffCode = default(string), string hSTariffCodeCountry = default(string), List<CrossBorderQuotesRequestIdentifiers> identifiers = default(List<CrossBorderQuotesRequestIdentifiers>), List<string> imageURL = default(List<string>), CrossBorderQuotesRequestItemDimension itemDimension = default(CrossBorderQuotesRequestItemDimension), string itemId = default(string), string manufacturer = default(string), NetCostMethodEnum? netCostMethod = default(NetCostMethodEnum?), string originCountryCode = default(string), string originStateProvince = default(string), PreferenceCriterionEnum? preferenceCriterion = default(PreferenceCriterionEnum?), Address producerAddress = default(Address), ProducerDeterminationEnum? producerDetermination = default(ProducerDeterminationEnum?), string producerId = default(string), int quantity = default(int), string quantityUOM = default(string), decimal unitPrice = default(decimal), ParcelWeight unitWeight = default(ParcelWeight), string url = default(string))
         {
             // to ensure "description" is required (not null)
             if (description == null)
@@ -173,7 +184,17 @@ namespace shippingapi.Model
             {
                 this.Description = description;
             }
-            
+
+            // to ensure "itemId" is required (not null)
+            if (itemId == null)
+            {
+                throw new InvalidDataException("itemId is a required property for CustomsItem and cannot be null");
+            }
+            else
+            {
+                this.ItemId = itemId;
+            }
+
             // to ensure "originCountryCode" is required (not null)
             if (originCountryCode == null)
             {
@@ -183,7 +204,7 @@ namespace shippingapi.Model
             {
                 this.OriginCountryCode = originCountryCode;
             }
-            
+
             // to ensure "quantity" is required (not null)
             if (quantity == null)
             {
@@ -193,7 +214,7 @@ namespace shippingapi.Model
             {
                 this.Quantity = quantity;
             }
-            
+
             // to ensure "unitPrice" is required (not null)
             if (unitPrice == null)
             {
@@ -203,7 +224,7 @@ namespace shippingapi.Model
             {
                 this.UnitPrice = unitPrice;
             }
-            
+
             // to ensure "unitWeight" is required (not null)
             if (unitWeight == null)
             {
@@ -213,8 +234,18 @@ namespace shippingapi.Model
             {
                 this.UnitWeight = unitWeight;
             }
-            
+
+            this.Brand = brand;
+            this.Condition = condition;
+            this.Eccn = eccn;
+            this.Hazmats = hazmats;
             this.HSTariffCode = hSTariffCode;
+            this.HSTariffCodeCountry = hSTariffCodeCountry;
+            this.Identifiers = identifiers;
+            this.ImageURL = imageURL;
+            this.ItemDimension = itemDimension;
+            this.ItemId = itemId;
+            this.Manufacturer = manufacturer;
             this.NetCostMethod = netCostMethod;
             this.OriginStateProvince = originStateProvince;
             this.PreferenceCriterion = preferenceCriterion;
@@ -222,70 +253,138 @@ namespace shippingapi.Model
             this.ProducerDetermination = producerDetermination;
             this.ProducerId = producerId;
             this.QuantityUOM = quantityUOM;
+            this.Url = url;
         }
-        
+
+        /// <summary>
+        /// Gets or Sets Brand
+        /// </summary>
+        [DataMember(Name = "brand", EmitDefaultValue = false)]
+        public string Brand { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Condition
+        /// </summary>
+        [DataMember(Name = "condition", EmitDefaultValue = false)]
+        public string Condition { get; set; }
+
+
         /// <summary>
         /// Gets or Sets Description
         /// </summary>
-        [DataMember(Name="description", EmitDefaultValue=true)]
+        [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Eccn
+        /// </summary>
+        [DataMember(Name = "eccn", EmitDefaultValue = false)]
+        public string Eccn { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Hazmats
+        /// </summary>
+        [DataMember(Name = "hazmats", EmitDefaultValue = false)]
+        public List<string> Hazmats { get; set; }
 
         /// <summary>
         /// Gets or Sets HSTariffCode
         /// </summary>
-        [DataMember(Name="hSTariffCode", EmitDefaultValue=false)]
+        [DataMember(Name = "hSTariffCode", EmitDefaultValue = false)]
         public string HSTariffCode { get; set; }
 
 
         /// <summary>
+        /// Gets or Sets HSTariffCodeCountry
+        /// </summary>
+        [DataMember(Name = "hSTariffCodeCountry", EmitDefaultValue = false)]
+        public string HSTariffCodeCountry { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Identifiers
+        /// </summary>
+        [DataMember(Name = "identifiers", EmitDefaultValue = false)]
+        public List<CrossBorderQuotesRequestIdentifiers> Identifiers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ImageURL
+        /// </summary>
+        [DataMember(Name = "imageURL", EmitDefaultValue = false)]
+        public List<string> ImageURL { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ItemDimension
+        /// </summary>
+        [DataMember(Name = "itemDimension", EmitDefaultValue = false)]
+        public CrossBorderQuotesRequestItemDimension ItemDimension { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ItemId
+        /// </summary>
+        [DataMember(Name = "itemId", EmitDefaultValue = true)]
+        public string ItemId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Manufacturer
+        /// </summary>
+        [DataMember(Name = "manufacturer", EmitDefaultValue = false)]
+        public string Manufacturer { get; set; }
+
+        /// <summary>
         /// Gets or Sets OriginCountryCode
         /// </summary>
-        [DataMember(Name="originCountryCode", EmitDefaultValue=true)]
+        [DataMember(Name = "originCountryCode", EmitDefaultValue = true)]
         public string OriginCountryCode { get; set; }
 
         /// <summary>
         /// Gets or Sets OriginStateProvince
         /// </summary>
-        [DataMember(Name="originStateProvince", EmitDefaultValue=false)]
+        [DataMember(Name = "originStateProvince", EmitDefaultValue = false)]
         public string OriginStateProvince { get; set; }
 
 
         /// <summary>
         /// Gets or Sets ProducerAddress
         /// </summary>
-        [DataMember(Name="producerAddress", EmitDefaultValue=false)]
+        [DataMember(Name = "producerAddress", EmitDefaultValue = false)]
         public Address ProducerAddress { get; set; }
 
 
         /// <summary>
         /// Gets or Sets ProducerId
         /// </summary>
-        [DataMember(Name="producerId", EmitDefaultValue=false)]
+        [DataMember(Name = "producerId", EmitDefaultValue = false)]
         public string ProducerId { get; set; }
 
         /// <summary>
         /// Gets or Sets Quantity
         /// </summary>
-        [DataMember(Name="quantity", EmitDefaultValue=true)]
+        [DataMember(Name = "quantity", EmitDefaultValue = true)]
         public int Quantity { get; set; }
 
         /// <summary>
         /// Gets or Sets QuantityUOM
         /// </summary>
-        [DataMember(Name="quantityUOM", EmitDefaultValue=false)]
+        [DataMember(Name = "quantityUOM", EmitDefaultValue = false)]
         public string QuantityUOM { get; set; }
 
         /// <summary>
         /// Gets or Sets UnitPrice
         /// </summary>
-        [DataMember(Name="unitPrice", EmitDefaultValue=true)]
+        [DataMember(Name = "unitPrice", EmitDefaultValue = true)]
         public decimal UnitPrice { get; set; }
 
         /// <summary>
         /// Gets or Sets UnitWeight
         /// </summary>
-        [DataMember(Name="unitWeight", EmitDefaultValue=true)]
+        [DataMember(Name = "unitWeight", EmitDefaultValue = true)]
         public ParcelWeight UnitWeight { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Url
+        /// </summary>
+        [DataMember(Name = "url", EmitDefaultValue = false)]
+        public string Url { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -295,8 +394,17 @@ namespace shippingapi.Model
         {
             var sb = new StringBuilder();
             sb.Append("class CustomsItem {\n");
+            sb.Append("  Brand: ").Append(Brand).Append("\n");
+            sb.Append("  Condition: ").Append(Condition).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Eccn: ").Append(Eccn).Append("\n");
+            sb.Append("  Hazmats: ").Append(Hazmats).Append("\n");
             sb.Append("  HSTariffCode: ").Append(HSTariffCode).Append("\n");
+            sb.Append("  Identifiers: ").Append(Identifiers).Append("\n");
+            sb.Append("  ImageURL: ").Append(ImageURL).Append("\n");
+            sb.Append("  ItemDimension: ").Append(ItemDimension).Append("\n");
+            sb.Append("  ItemId: ").Append(ItemId).Append("\n");
+            sb.Append("  Manufacturer: ").Append(Manufacturer).Append("\n");
             sb.Append("  NetCostMethod: ").Append(NetCostMethod).Append("\n");
             sb.Append("  OriginCountryCode: ").Append(OriginCountryCode).Append("\n");
             sb.Append("  OriginStateProvince: ").Append(OriginStateProvince).Append("\n");
@@ -308,10 +416,11 @@ namespace shippingapi.Model
             sb.Append("  QuantityUOM: ").Append(QuantityUOM).Append("\n");
             sb.Append("  UnitPrice: ").Append(UnitPrice).Append("\n");
             sb.Append("  UnitWeight: ").Append(UnitWeight).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -341,71 +450,131 @@ namespace shippingapi.Model
             if (input == null)
                 return false;
 
-            return 
+            return
+                (
+                    this.Brand == input.Brand ||
+                    (this.Brand != null &&
+                    this.Brand.Equals(input.Brand))
+                ) &&
+                 (
+                    this.Condition == input.Condition ||
+                    (this.Condition != null &&
+                    this.Condition.Equals(input.Condition))
+                ) &&
                 (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
-                ) && 
+                ) &&
+                 (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) &&
+                 (
+                    this.Eccn == input.Eccn ||
+                    (this.Eccn != null &&
+                    this.Eccn.Equals(input.Eccn))
+                ) &&
+                (
+                    this.Hazmats == input.Hazmats ||
+                    (this.Hazmats != null &&
+                    this.Hazmats.Equals(input.Hazmats))
+                ) &&
                 (
                     this.HSTariffCode == input.HSTariffCode ||
                     (this.HSTariffCode != null &&
                     this.HSTariffCode.Equals(input.HSTariffCode))
-                ) && 
+                ) &&
+                 (
+                    this.HSTariffCodeCountry == input.HSTariffCodeCountry ||
+                    (this.HSTariffCodeCountry != null &&
+                    this.HSTariffCodeCountry.Equals(input.HSTariffCodeCountry))
+                ) &&
+                 (
+                    this.Identifiers == input.Identifiers ||
+                    (this.Identifiers != null &&
+                    this.Identifiers.Equals(input.Identifiers))
+                ) &&
+                 (
+                    this.ImageURL == input.ImageURL ||
+                    (this.ImageURL != null &&
+                    this.ImageURL.Equals(input.ImageURL))
+                ) &&
+                 (
+                    this.ItemDimension == input.ItemDimension ||
+                    (this.ItemDimension != null &&
+                    this.ItemDimension.Equals(input.ItemDimension))
+                ) &&
+                 (
+                    this.ItemId == input.ItemId ||
+                    (this.ItemId != null &&
+                    this.ItemId.Equals(input.ItemId))
+                ) &&
+                 (
+                    this.Manufacturer == input.Manufacturer ||
+                    (this.Manufacturer != null &&
+                    this.Manufacturer.Equals(input.Manufacturer))
+                ) &&
                 (
                     this.NetCostMethod == input.NetCostMethod ||
                     (this.NetCostMethod != null &&
                     this.NetCostMethod.Equals(input.NetCostMethod))
-                ) && 
+                ) &&
                 (
                     this.OriginCountryCode == input.OriginCountryCode ||
                     (this.OriginCountryCode != null &&
                     this.OriginCountryCode.Equals(input.OriginCountryCode))
-                ) && 
+                ) &&
                 (
                     this.OriginStateProvince == input.OriginStateProvince ||
                     (this.OriginStateProvince != null &&
                     this.OriginStateProvince.Equals(input.OriginStateProvince))
-                ) && 
+                ) &&
                 (
                     this.PreferenceCriterion == input.PreferenceCriterion ||
                     (this.PreferenceCriterion != null &&
                     this.PreferenceCriterion.Equals(input.PreferenceCriterion))
-                ) && 
+                ) &&
                 (
                     this.ProducerAddress == input.ProducerAddress ||
                     (this.ProducerAddress != null &&
                     this.ProducerAddress.Equals(input.ProducerAddress))
-                ) && 
+                ) &&
                 (
                     this.ProducerDetermination == input.ProducerDetermination ||
                     (this.ProducerDetermination != null &&
                     this.ProducerDetermination.Equals(input.ProducerDetermination))
-                ) && 
+                ) &&
                 (
                     this.ProducerId == input.ProducerId ||
                     (this.ProducerId != null &&
                     this.ProducerId.Equals(input.ProducerId))
-                ) && 
+                ) &&
                 (
                     this.Quantity == input.Quantity ||
                     (this.Quantity != null &&
                     this.Quantity.Equals(input.Quantity))
-                ) && 
+                ) &&
                 (
                     this.QuantityUOM == input.QuantityUOM ||
                     (this.QuantityUOM != null &&
                     this.QuantityUOM.Equals(input.QuantityUOM))
-                ) && 
+                ) &&
                 (
                     this.UnitPrice == input.UnitPrice ||
                     (this.UnitPrice != null &&
                     this.UnitPrice.Equals(input.UnitPrice))
-                ) && 
+                ) &&
                 (
                     this.UnitWeight == input.UnitWeight ||
                     (this.UnitWeight != null &&
                     this.UnitWeight.Equals(input.UnitWeight))
+                ) &&
+                (
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
                 );
         }
 
@@ -418,10 +587,30 @@ namespace shippingapi.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Brand != null)
+                    hashCode = hashCode * 59 + this.Brand.GetHashCode();
+                if (this.Condition != null)
+                    hashCode = hashCode * 59 + this.Condition.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
+                if (this.Eccn != null)
+                    hashCode = hashCode * 59 + this.Eccn.GetHashCode();
+                if (this.Hazmats != null)
+                    hashCode = hashCode * 59 + this.Hazmats.GetHashCode();
                 if (this.HSTariffCode != null)
                     hashCode = hashCode * 59 + this.HSTariffCode.GetHashCode();
+                if (this.HSTariffCodeCountry != null)
+                    hashCode = hashCode * 59 + this.HSTariffCodeCountry.GetHashCode();
+                if (this.Identifiers != null)
+                    hashCode = hashCode * 59 + this.Identifiers.GetHashCode();
+                if (this.ImageURL != null)
+                    hashCode = hashCode * 59 + this.ImageURL.GetHashCode();
+                if (this.ItemDimension != null)
+                    hashCode = hashCode * 59 + this.ItemDimension.GetHashCode();
+                if (this.ItemId != null)
+                    hashCode = hashCode * 59 + this.ItemId.GetHashCode();
+                if (this.Manufacturer != null)
+                    hashCode = hashCode * 59 + this.Manufacturer.GetHashCode();
                 if (this.NetCostMethod != null)
                     hashCode = hashCode * 59 + this.NetCostMethod.GetHashCode();
                 if (this.OriginCountryCode != null)
