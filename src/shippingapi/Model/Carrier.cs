@@ -64,10 +64,10 @@ namespace shippingapi.Model
         FEDEX = 5,
 
         /// <summary>
-        /// Enum USP for value: USP
+        /// Enum UPS for value: UPS
         /// </summary>
-        [EnumMember(Value = "USP")]
-        USP = 6
+        [EnumMember(Value = "UPS")]
+        UPS = 6
 
     }
 
