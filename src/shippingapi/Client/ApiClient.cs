@@ -183,7 +183,7 @@ namespace shippingapi.Client
 
             // add header parameter, if any
 
-            headerParams.Add("User-Agent", "PitneyBowes-CSharpSDKOpenAPI 1.5.1");
+            headerParams.Add("User-Agent", "PitneyBowes-CSharpSDKOpenAPI 1.5.2");
             foreach (var param in headerParams)
                 request.AddHeader(param.Key, param.Value);
 

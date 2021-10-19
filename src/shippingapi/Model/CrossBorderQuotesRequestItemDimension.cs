@@ -37,7 +37,7 @@ namespace shippingapi.Model
         /// <param name="height">height.</param>
         /// <param name="width">width.</param>
         /// <param name="unitOfMeasurement">unitOfMeasurement.</param>
-        public CrossBorderQuotesRequestItemDimension(int length = default(int), decimal height = default(decimal), int width = default(int), string unitOfMeasurement = default(string))
+        public CrossBorderQuotesRequestItemDimension(decimal length = default(decimal), decimal height = default(decimal), decimal width = default(decimal), string unitOfMeasurement = default(string))
         {
             this.Length = length;
             this.Height = height;
@@ -49,7 +49,7 @@ namespace shippingapi.Model
         /// Gets or Sets Length
         /// </summary>
         [DataMember(Name="length", EmitDefaultValue=false)]
-        public int Length { get; set; }
+        public decimal Length { get; set; }
 
         /// <summary>
         /// Gets or Sets Height
@@ -61,7 +61,7 @@ namespace shippingapi.Model
         /// Gets or Sets Width
         /// </summary>
         [DataMember(Name="width", EmitDefaultValue=false)]
-        public int Width { get; set; }
+        public decimal Width { get; set; }
 
         /// <summary>
         /// Gets or Sets UnitOfMeasurement
