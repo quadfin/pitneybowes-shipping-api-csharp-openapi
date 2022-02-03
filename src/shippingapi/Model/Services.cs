@@ -24,12 +24,38 @@ using OpenAPIDateConverter = shippingapi.Client.OpenAPIDateConverter;
 
 namespace shippingapi.Model
 {
+    //
+    // Use a custom string converter to intercept unknown values from the web service
+    //
+    public class ServicesEnumConverter : StringEnumConverter
+    {
+        public Services? DefaultValue { get { return default(Services); } }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            try
+            {
+                switch ($"{reader.Value}")
+                {
+                    case "PMC": return Services.PM; // TODO: is this correct?
+                }
+
+                return base.ReadJson(reader, objectType, existingValue, serializer);
+            }
+            catch (JsonSerializationException)
+            {
+                return DefaultValue;
+            }
+        }
+    }
+
     /// <summary>
     /// The abbreviated name of the carrier-specific service. For abbreviations, see the Services table on the [carrier&#39;s reference page](https://shipping.pitneybowes.com/reference/carrier-services.html).   EM - Priority Mail Express | PM - Priority Mail | FCM - First-Class Mail | PRCLSEL - Parcel Select | STDPOST - Standard Post | LIB - Library Mail | MEDIA - Media Mail | PMOD - Priority Mail Open and Distribute | EMI - Priority Mail Express International | PMI - Priority Mail International | FCMI - First-Class Mail International | FCPIS - First-Class Package International Service. For overseas tracking,  [Do the APIs support E-USPS DELCON?](https://shipping.pitneybowes.com/faqs/shipments.html#usps-e-delcon-faq)
     /// </summary>
     /// <value>The abbreviated name of the carrier-specific service. For abbreviations, see the Services table on the [carrier&#39;s reference page](https://shipping.pitneybowes.com/reference/carrier-services.html).   EM - Priority Mail Express | PM - Priority Mail | FCM - First-Class Mail | PRCLSEL - Parcel Select | STDPOST - Standard Post | LIB - Library Mail | MEDIA - Media Mail | PMOD - Priority Mail Open and Distribute | EMI - Priority Mail Express International | PMI - Priority Mail International | FCMI - First-Class Mail International | FCPIS - First-Class Package International Service. For overseas tracking,  [Do the APIs support E-USPS DELCON?](https://shipping.pitneybowes.com/faqs/shipments.html#usps-e-delcon-faq)</value>
-    
-    [JsonConverter(typeof(StringEnumConverter))]
+
+    //[JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(ServicesEnumConverter))]
     
     public enum Services
     {

@@ -97,13 +97,13 @@ namespace shippingapi.Model
         /// Enum Hazmat for value: hazmat
         /// </summary>
         [EnumMember(Value = "hazmat")]
-        Hazmat = 11,
+        hazmat = 11, // Hazmat *********** PHIL: API requires hazmat
 
         /// <summary>
         /// Enum Holiday for value: holiday
         /// </summary>
         [EnumMember(Value = "holiday")]
-        Holiday = 12,
+        holiday = 12, // Holiday *********** PHIL: API requires holiday
 
         /// <summary>
         /// Enum InsRD for value: InsRD
@@ -115,19 +115,19 @@ namespace shippingapi.Model
         /// Enum Liveanimal for value: liveanimal
         /// </summary>
         [EnumMember(Value = "liveanimal")]
-        Liveanimal = 14,
+        liveanimal = 14, // Liveanimal *********** PHIL: API requires liveanimal
 
         /// <summary>
         /// Enum Liveanimalpoultry for value: liveanimal - poultry
         /// </summary>
-        [EnumMember(Value = "liveanimal - poultry")]
-        Liveanimalpoultry = 15,
+        [EnumMember(Value = "liveanimal-poultry")]  // "liveanimal - poultry" --> "liveanimal-poultry"
+        liveanimal_poultry = 15, // Liveanimalpoultry *********** PHIL: API requires liveanimal-poultry (see also #60 below)
 
         /// <summary>
         /// Enum PMODOPTIONS for value: PMOD_OPTIONS
         /// </summary>
         [EnumMember(Value = "PMOD_OPTIONS")]
-        PMODOPTIONS = 16,
+        PMOD_OPTIONS = 16, // PMODOPTIONS *********** PHIL: API requires PMOD_OPTIONS
 
         /// <summary>
         /// Enum Reg for value: Reg
@@ -180,8 +180,8 @@ namespace shippingapi.Model
         /// <summary>
         /// Enum SIG for value: SIG
         /// </summary>
-        [EnumMember(Value = "SIG")]
-        SIG = 25,
+        [EnumMember(Value = "Sig")] // SIG *********** PHIL: API requires Sig
+        Sig = 25,
 
         /// <summary>
         /// Enum SigRD for value: SigRD
@@ -193,13 +193,13 @@ namespace shippingapi.Model
         /// Enum Sunday for value: sunday
         /// </summary>
         [EnumMember(Value = "sunday")]
-        Sunday = 27,
+        sunday = 27, // Sunday *********** PHIL: API requires sunday
 
         /// <summary>
         /// Enum Sundayholiday for value: sunday - holiday
         /// </summary>
-        [EnumMember(Value = "sunday - holiday")]
-        Sundayholiday = 28,
+        [EnumMember(Value = "sunday-holiday")]
+        sunday_holiday = 28, // Sundayholiday *********** PHIL: API requires sunday-holiday
 
         /// <summary>
         /// Enum NOTIFICATIONS for value: NOTIFICATIONS
@@ -229,13 +229,13 @@ namespace shippingapi.Model
         /// Enum ANCILLARYENDORSEMENT for value: ANCILLARY_ENDORSEMENT
         /// </summary>
         [EnumMember(Value = "ANCILLARY_ENDORSEMENT")]
-        ANCILLARYENDORSEMENT = 33,
+        ANCILLARY_ENDORSEMENT = 33, // ANCILLARYENDORSEMENT -> ANCILLARY_ENDORSEMENT
 
         /// <summary>
         /// Enum ADDHDL for value: ADD_HDL
         /// </summary>
         [EnumMember(Value = "ADD_HDL")]
-        ADDHDL = 34,
+        ADD_HDL = 34, // ADDHDL -> ADD_HDL
 
         /// <summary>
         /// Enum ALCOHOL for value: ALCOHOL
@@ -247,13 +247,13 @@ namespace shippingapi.Model
         /// Enum CARRIERLEAVEIFNORES for value: CARRIER_LEAVE_IF_NO_RES
         /// </summary>
         [EnumMember(Value = "CARRIER_LEAVE_IF_NO_RES")]
-        CARRIERLEAVEIFNORES = 36,
+        CARRIER_LEAVE_IF_NO_RES = 36, // CARRIERLEAVEIFNORES -> CARRIER_LEAVE_IF_NO_RES
 
         /// <summary>
         /// Enum DIRECTSIG for value: DIRECT_SIG
         /// </summary>
         [EnumMember(Value = "DIRECT_SIG")]
-        DIRECTSIG = 37,
+        DIRECT_SIG = 37, // DIRECTSIG -> DIRECT_SIG
 
         /// <summary>
         /// Enum APPOINTMENT for value: APPOINTMENT
@@ -289,19 +289,19 @@ namespace shippingapi.Model
         /// Enum PALPLUS for value: PAL_PLUS
         /// </summary>
         [EnumMember(Value = "PAL_PLUS")]
-        PALPLUS = 43,
+        PAL_PLUS = 43, // PALPLUS -> PAL_PLUS
 
         /// <summary>
         /// Enum SATDELIVERY for value: SAT_DELIVERY
         /// </summary>
         [EnumMember(Value = "SAT_DELIVERY")]
-        SATDELIVERY = 44,
+        SAT_DELI = 44, // SATDELIVERY -> SAT_DELI
 
         /// <summary>
         /// Enum SATPICKUP for value: SAT_PICKUP
         /// </summary>
         [EnumMember(Value = "SAT_PICKUP")]
-        SATPICKUP = 45,
+        SAT_PICKUP = 45, // SATPICKUP -> SAT_PICKUP
 
         /// <summary>
         /// Enum HOLD for value: HOLD
@@ -313,7 +313,7 @@ namespace shippingapi.Model
         /// Enum NOSIG for value: NO_SIG
         /// </summary>
         [EnumMember(Value = "NO_SIG")]
-        NOSIG = 47,
+        NO_SIG = 47, // NOSIG -> NO_SIG
 
         /// <summary>
         /// Enum PRL for value: PRL
@@ -325,7 +325,7 @@ namespace shippingapi.Model
         /// Enum ADULTSIG for value: ADULT_SIG
         /// </summary>
         [EnumMember(Value = "ADULT_SIG")]
-        ADULTSIG = 49,
+        ADULT_SIG = 49, // ADULTSIG -> ADULT_SIG
 
         /// <summary>
         /// Enum CARBON for value: CARBON
@@ -337,19 +337,19 @@ namespace shippingapi.Model
         /// Enum CODCASHIER for value: COD_CASHIER
         /// </summary>
         [EnumMember(Value = "COD_CASHIER")]
-        CODCASHIER = 51,
+        COD_CASHIER = 51, // CODCASHIER -> COD_CASHIER
 
         /// <summary>
         /// Enum CODCHECK for value: COD_CHECK
         /// </summary>
         [EnumMember(Value = "COD_CHECK")]
-        CODCHECK = 52,
+        COD_CHECK = 52, // CODCHECK -> COD_CHECK
 
         /// <summary>
         /// Enum DELCON for value: DEL_CON
         /// </summary>
         [EnumMember(Value = "DEL_CON")]
-        DELCON = 53,
+        DEL_CON = 53, // DELCON -> DEL_CON
 
         /// <summary>
         /// Enum DIRECT for value: DIRECT
@@ -361,7 +361,7 @@ namespace shippingapi.Model
         /// Enum DRYICE for value: DRY_ICE
         /// </summary>
         [EnumMember(Value = "DRY_ICE")]
-        DRYICE = 55,
+        DRY_ICE = 55, // DRYICE -> DRY_ICE
 
         /// <summary>
         /// Enum INS for value: INS
@@ -373,14 +373,21 @@ namespace shippingapi.Model
         /// Enum SHPRELEASE for value: SHP_RELEASE
         /// </summary>
         [EnumMember(Value = "SHP_RELEASE")]
-        SHPRELEASE = 57,
+        SHP_RELEASE = 57, // SHPRELEASE -> SHP_RELEASE
 
         /// <summary>
         /// Enum VERBAL for value: VERBAL
         /// </summary>
         [EnumMember(Value = "VERBAL")]
-        VERBAL = 58
+        VERBAL = 58,
 
+        // Added by Phil .. 
+
+        /// <summary>
+        /// Enum NOWEEKEND for value: noWeekend
+        /// </summary>
+        [EnumMember(Value = "noWeekend")]
+        noWeekend = 59,
     }
 
 }

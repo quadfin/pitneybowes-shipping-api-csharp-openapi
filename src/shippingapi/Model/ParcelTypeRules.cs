@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = shippingapi.Client.OpenAPIDateConverter;
+using Newtonsoft.Json.Serialization;
 
 namespace shippingapi.Model
 {
@@ -53,18 +54,18 @@ namespace shippingapi.Model
         /// <param name="rateTypeId">rateTypeId.</param>
         /// <param name="rateTypeBrandedName">rateTypeBrandedName.</param>
         /// <param name="trackable">trackable.</param>
-        /// <param name="specialServicesRule">specialServicesRule.</param>
+        /// <param name="specialServiceRules">specialServiceRules.</param>
         /// <param name="weightRules">weightRules.</param>
         /// <param name="dimensionRules">dimensionRules.</param>
         /// <param name="suggestedTrackableSpecialServiceId">suggestedTrackableSpecialServiceId.</param>
-        public ParcelTypeRules(ParcelType? parcelType = default(ParcelType?), string brandedName = default(string), string rateTypeId = default(string), string rateTypeBrandedName = default(string), Trackable? trackable = default(Trackable?), List<SpecialServicesRule> specialServicesRule = default(List<SpecialServicesRule>), List<WeightRules> weightRules = default(List<WeightRules>), List<DimensionRules> dimensionRules = default(List<DimensionRules>), SpecialServiceCodes? suggestedTrackableSpecialServiceId = default(SpecialServiceCodes?))
+        public ParcelTypeRules(ParcelType? parcelType = default(ParcelType?), string brandedName = default(string), string rateTypeId = default(string), string rateTypeBrandedName = default(string), Trackable? trackable = default(Trackable?), List<SpecialServiceRule> specialServiceRules = default(List<SpecialServiceRule>), List<WeightRules> weightRules = default(List<WeightRules>), List<DimensionRules> dimensionRules = default(List<DimensionRules>), SpecialServiceCodes? suggestedTrackableSpecialServiceId = default(SpecialServiceCodes?))
         {
             this.ParcelType = parcelType;
             this.BrandedName = brandedName;
             this.RateTypeId = rateTypeId;
             this.RateTypeBrandedName = rateTypeBrandedName;
             this.Trackable = trackable;
-            this.SpecialServicesRule = specialServicesRule;
+            this.SpecialServiceRules = specialServiceRules;
             this.WeightRules = weightRules;
             this.DimensionRules = dimensionRules;
             this.SuggestedTrackableSpecialServiceId = suggestedTrackableSpecialServiceId;
@@ -91,10 +92,10 @@ namespace shippingapi.Model
 
 
         /// <summary>
-        /// Gets or Sets SpecialServicesRule
+        /// Gets or Sets SpecialServiceRules
         /// </summary>
-        [DataMember(Name="specialServicesRule", EmitDefaultValue=false)]
-        public List<SpecialServicesRule> SpecialServicesRule { get; set; }
+        [DataMember(Name="specialServiceRules", EmitDefaultValue=false)]
+        public List<SpecialServiceRule> SpecialServiceRules { get; set; }
 
         /// <summary>
         /// Gets or Sets WeightRules
@@ -122,7 +123,7 @@ namespace shippingapi.Model
             sb.Append("  RateTypeId: ").Append(RateTypeId).Append("\n");
             sb.Append("  RateTypeBrandedName: ").Append(RateTypeBrandedName).Append("\n");
             sb.Append("  Trackable: ").Append(Trackable).Append("\n");
-            sb.Append("  SpecialServicesRule: ").Append(SpecialServicesRule).Append("\n");
+            sb.Append("  SpecialServiceRules: ").Append(SpecialServiceRules).Append("\n");
             sb.Append("  WeightRules: ").Append(WeightRules).Append("\n");
             sb.Append("  DimensionRules: ").Append(DimensionRules).Append("\n");
             sb.Append("  SuggestedTrackableSpecialServiceId: ").Append(SuggestedTrackableSpecialServiceId).Append("\n");
@@ -186,10 +187,10 @@ namespace shippingapi.Model
                     this.Trackable.Equals(input.Trackable))
                 ) && 
                 (
-                    this.SpecialServicesRule == input.SpecialServicesRule ||
-                    this.SpecialServicesRule != null &&
-                    input.SpecialServicesRule != null &&
-                    this.SpecialServicesRule.SequenceEqual(input.SpecialServicesRule)
+                    this.SpecialServiceRules == input.SpecialServiceRules ||
+                    this.SpecialServiceRules != null &&
+                    input.SpecialServiceRules != null &&
+                    this.SpecialServiceRules.SequenceEqual(input.SpecialServiceRules)
                 ) && 
                 (
                     this.WeightRules == input.WeightRules ||
@@ -229,8 +230,8 @@ namespace shippingapi.Model
                     hashCode = hashCode * 59 + this.RateTypeBrandedName.GetHashCode();
                 if (this.Trackable != null)
                     hashCode = hashCode * 59 + this.Trackable.GetHashCode();
-                if (this.SpecialServicesRule != null)
-                    hashCode = hashCode * 59 + this.SpecialServicesRule.GetHashCode();
+                if (this.SpecialServiceRules != null)
+                    hashCode = hashCode * 59 + this.SpecialServiceRules.GetHashCode();
                 if (this.WeightRules != null)
                     hashCode = hashCode * 59 + this.WeightRules.GetHashCode();
                 if (this.DimensionRules != null)
@@ -249,6 +250,14 @@ namespace shippingapi.Model
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             yield break;
+        }
+
+        [OnError]
+        internal void OnError(StreamingContext context, ErrorContext errorContext)
+        {
+            // unknown parcel types (LGENV-IMB) are causing deserialization failure
+            // TODO: just skip errors for now...
+            errorContext.Handled = true;
         }
     }
 

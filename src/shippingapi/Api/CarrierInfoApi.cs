@@ -11,7 +11,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 using RestSharp;
 using shippingapi.Client;
 using shippingapi.Model;
@@ -88,7 +90,7 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>CarrierRule</returns>
-        CarrierRule GetCarrierServiceRules (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
+        CarrierRule[] GetCarrierServiceRules (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
 
         /// <summary>
         /// Retrieves the rules governing the carrier&#39;s services.
@@ -106,7 +108,7 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>ApiResponse of CarrierRule</returns>
-        ApiResponse<CarrierRule> GetCarrierServiceRulesWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
+        ApiResponse<CarrierRule[]> GetCarrierServiceRulesWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
         /// <summary>
         /// This operation returns a list of supported destination countries to which the carrier offers international shipping services.
         /// </summary>
@@ -198,7 +200,7 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>Task of CarrierRule</returns>
-        System.Threading.Tasks.Task<CarrierRule> GetCarrierServiceRulesAsync (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
+        System.Threading.Tasks.Task<CarrierRule[]> GetCarrierServiceRulesAsync (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
 
         /// <summary>
         /// Retrieves the rules governing the carrier&#39;s services.
@@ -216,7 +218,7 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>Task of ApiResponse (CarrierRule)</returns>
-        System.Threading.Tasks.Task<ApiResponse<CarrierRule>> GetCarrierServiceRulesAsyncWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
+        System.Threading.Tasks.Task<ApiResponse<CarrierRule[]>> GetCarrierServiceRulesAsyncWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?));
         /// <summary>
         /// This operation returns a list of supported destination countries to which the carrier offers international shipping services.
         /// </summary>
@@ -696,9 +698,9 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>CarrierRule</returns>
-        public CarrierRule GetCarrierServiceRules (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
+        public CarrierRule[] GetCarrierServiceRules (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
         {
-             ApiResponse<CarrierRule> localVarResponse = GetCarrierServiceRulesWithHttpInfo(carrier, originCountryCode, destinationCountryCode, xPBUnifiedErrorStructure, rateTypeId, futureShipmentDate, returnShipment, compactResponse);
+             ApiResponse<CarrierRule[]> localVarResponse = GetCarrierServiceRulesWithHttpInfo(carrier, originCountryCode, destinationCountryCode, xPBUnifiedErrorStructure, rateTypeId, futureShipmentDate, returnShipment, compactResponse);
              return localVarResponse.Data;
         }
 
@@ -715,7 +717,7 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>ApiResponse of CarrierRule</returns>
-        public ApiResponse<CarrierRule> GetCarrierServiceRulesWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
+        public ApiResponse<CarrierRule[]> GetCarrierServiceRulesWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
         {
             // verify the required parameter 'carrier' is set
             if (carrier == null)
@@ -777,9 +779,12 @@ namespace shippingapi.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<CarrierRule>(localVarStatusCode,
+            string queryParamString = string.Join("&", localVarPathParams.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList());
+            return new ApiResponse<CarrierRule[]>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (CarrierRule) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierRule)));
+                (CarrierRule[]) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierRule[])),
+                $"{localVarPath}?{queryParamString}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                );
         }
 
         /// <summary>
@@ -795,9 +800,9 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>Task of CarrierRule</returns>
-        public async System.Threading.Tasks.Task<CarrierRule> GetCarrierServiceRulesAsync (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
+        public async System.Threading.Tasks.Task<CarrierRule[]> GetCarrierServiceRulesAsync (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
         {
-             ApiResponse<CarrierRule> localVarResponse = await GetCarrierServiceRulesAsyncWithHttpInfo(carrier, originCountryCode, destinationCountryCode, xPBUnifiedErrorStructure, rateTypeId, futureShipmentDate, returnShipment, compactResponse);
+             ApiResponse<CarrierRule[]> localVarResponse = await GetCarrierServiceRulesAsyncWithHttpInfo(carrier, originCountryCode, destinationCountryCode, xPBUnifiedErrorStructure, rateTypeId, futureShipmentDate, returnShipment, compactResponse);
              return localVarResponse.Data;
 
         }
@@ -815,7 +820,7 @@ namespace shippingapi.Api
         /// <param name="returnShipment">If set to true, provides only services applicable for return shipment. (optional)</param>
         /// <param name="compactResponse">If set to true, returns only summary, without special service details. (optional)</param>
         /// <returns>Task of ApiResponse (CarrierRule)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CarrierRule>> GetCarrierServiceRulesAsyncWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
+        public async System.Threading.Tasks.Task<ApiResponse<CarrierRule[]>> GetCarrierServiceRulesAsyncWithHttpInfo (Carrier carrier, ISOCountryCode originCountryCode, ISOCountryCode destinationCountryCode, bool? xPBUnifiedErrorStructure = default(bool?), string rateTypeId = default(string), string futureShipmentDate = default(string), DateTime? returnShipment = default(DateTime?), bool? compactResponse = default(bool?))
         {
             // verify the required parameter 'carrier' is set
             if (carrier == null)
@@ -877,9 +882,9 @@ namespace shippingapi.Api
                 if (exception != null) throw exception;
             }
 
-            return new ApiResponse<CarrierRule>(localVarStatusCode,
+            return new ApiResponse<CarrierRule[]>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (CarrierRule) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierRule)));
+                (CarrierRule[]) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CarrierRule[])));
         }
 
         /// <summary>

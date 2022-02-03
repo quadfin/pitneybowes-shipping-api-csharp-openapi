@@ -25,10 +25,10 @@ using OpenAPIDateConverter = shippingapi.Client.OpenAPIDateConverter;
 namespace shippingapi.Model
 {
     /// <summary>
-    /// SpecialServicesRule
+    /// SpecialServiceRule
     /// </summary>
     [DataContract]
-    public partial class SpecialServicesRule :  IEquatable<SpecialServicesRule>, IValidatableObject
+    public partial class SpecialServiceRule :  IEquatable<SpecialServiceRule>, IValidatableObject
     {
         /// <summary>
         /// Gets or Sets SpecialServiceId
@@ -39,9 +39,9 @@ namespace shippingapi.Model
         /// Gets or Sets IncompatibleSpecialServices
         /// </summary>
         [DataMember(Name="incompatibleSpecialServices", EmitDefaultValue=false)]
-        public SpecialServiceCodes? IncompatibleSpecialServices { get; set; }
+        public SpecialServiceCodes[] IncompatibleSpecialServices { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SpecialServicesRule" /> class.
+        /// Initializes a new instance of the <see cref="SpecialServiceRule" /> class.
         /// </summary>
         /// <param name="specialServiceId">specialServiceId.</param>
         /// <param name="brandedName">brandedName.</param>
@@ -51,7 +51,7 @@ namespace shippingapi.Model
         /// <param name="inputParameterRules">inputParameterRules.</param>
         /// <param name="prerequisiteRules">prerequisiteRules.</param>
         /// <param name="incompatibleSpecialServices">incompatibleSpecialServices.</param>
-        public SpecialServicesRule(SpecialServiceCodes? specialServiceId = default(SpecialServiceCodes?), string brandedName = default(string), string categoryId = default(string), string categoryName = default(string), bool trackable = default(bool), List<ServicesParameterRule> inputParameterRules = default(List<ServicesParameterRule>), List<PrerequisiteRules> prerequisiteRules = default(List<PrerequisiteRules>), SpecialServiceCodes? incompatibleSpecialServices = default(SpecialServiceCodes?))
+        public SpecialServiceRule(SpecialServiceCodes? specialServiceId = default(SpecialServiceCodes?), string brandedName = default(string), string categoryId = default(string), string categoryName = default(string), bool trackable = default(bool), List<ServicesParameterRule> inputParameterRules = default(List<ServicesParameterRule>), List<PrerequisiteRules> prerequisiteRules = default(List<PrerequisiteRules>), SpecialServiceCodes[] incompatibleSpecialServices = null)
         {
             this.SpecialServiceId = specialServiceId;
             this.BrandedName = brandedName;
@@ -108,7 +108,7 @@ namespace shippingapi.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class SpecialServicesRule {\n");
+            sb.Append("class SpecialServiceRule {\n");
             sb.Append("  SpecialServiceId: ").Append(SpecialServiceId).Append("\n");
             sb.Append("  BrandedName: ").Append(BrandedName).Append("\n");
             sb.Append("  CategoryId: ").Append(CategoryId).Append("\n");
@@ -137,15 +137,15 @@ namespace shippingapi.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SpecialServicesRule);
+            return this.Equals(input as SpecialServiceRule);
         }
 
         /// <summary>
-        /// Returns true if SpecialServicesRule instances are equal
+        /// Returns true if SpecialServiceRule instances are equal
         /// </summary>
-        /// <param name="input">Instance of SpecialServicesRule to be compared</param>
+        /// <param name="input">Instance of SpecialServiceRule to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SpecialServicesRule input)
+        public bool Equals(SpecialServiceRule input)
         {
             if (input == null)
                 return false;

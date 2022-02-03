@@ -37,7 +37,7 @@ namespace shippingapi.Model
         /// <param name="width">width.</param>
         /// <param name="height">height.</param>
         /// <param name="unitOfMeasurement">unitOfMeasurement.</param>
-        public DimensionRulesMaxParcelDimensions(int length = default(int), decimal width = default(decimal), int height = default(int), string unitOfMeasurement = default(string))
+        public DimensionRulesMaxParcelDimensions(decimal length = default(decimal), decimal width = default(decimal), decimal height = default(decimal), string unitOfMeasurement = default(string))
         {
             this.Length = length;
             this.Width = width;
@@ -49,7 +49,7 @@ namespace shippingapi.Model
         /// Gets or Sets Length
         /// </summary>
         [DataMember(Name="length", EmitDefaultValue=false)]
-        public int Length { get; set; }
+        public decimal Length { get; set; }
 
         /// <summary>
         /// Gets or Sets Width
@@ -61,7 +61,7 @@ namespace shippingapi.Model
         /// Gets or Sets Height
         /// </summary>
         [DataMember(Name="height", EmitDefaultValue=false)]
-        public int Height { get; set; }
+        public decimal Height { get; set; }
 
         /// <summary>
         /// Gets or Sets UnitOfMeasurement

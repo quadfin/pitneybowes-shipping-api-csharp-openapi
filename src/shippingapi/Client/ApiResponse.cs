@@ -37,16 +37,40 @@ namespace shippingapi.Client
         public T Data { get; private set; }
 
         /// <summary>
+        /// Gets or sets the raw request URL (Raw HTTP request URL)
+        /// </summary>
+        /// <value>The raw request.</value>
+        public string HttpRequestUrl { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the raw request body (Raw HTTP request body)
+        /// </summary>
+        /// <value>The raw request.</value>
+        public string HttpRequestBody { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the raw response body (Raw HTTP response body)
+        /// </summary>
+        /// <value>The raw response.</value>
+        public string HttpResponseBody { get; private set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ApiResponse&lt;T&gt;" /> class.
         /// </summary>
         /// <param name="statusCode">HTTP status code.</param>
         /// <param name="headers">HTTP headers.</param>
         /// <param name="data">Data (parsed HTTP body)</param>
-        public ApiResponse(int statusCode, IDictionary<string, string> headers, T data)
+        /// <param name="httpRequestUrl">HTTP request URL</param>
+        /// <param name="httpRequestBody">HTTP request body</param>
+        /// <param name="httpResponseBody">HTTP response body</param>
+        public ApiResponse(int statusCode, IDictionary<string, string> headers, T data, string httpRequestUrl = null, string httpRequestBody = null, string httpResponseBody = null)
         {
             this.StatusCode= statusCode;
             this.Headers = headers;
             this.Data = data;
+            this.HttpRequestUrl = httpRequestUrl;
+            this.HttpRequestBody = httpRequestBody;
+            this.HttpResponseBody = httpResponseBody;
         }
 
     }

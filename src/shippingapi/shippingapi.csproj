@@ -8,6 +8,7 @@ The version of the OpenAPI document: 1.0.0
 Contact: support@pb.com
 -->
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\NUnit.3.13.2\build\NUnit.props" Condition="Exists('..\..\packages\NUnit.3.13.2\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -16,9 +17,11 @@ Contact: support@pb.com
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>shippingapi</RootNamespace>
     <AssemblyName>shippingapiv2</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +33,8 @@ Contact: support@pb.com
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\shippingapiv2.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS1591,IDE0034,IDE0044,IDE1006,IDE0038,IDE0017,IDE0059</NoWarn>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,11 +47,21 @@ Contact: support@pb.com
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="JsonSubTypes, Version=1.8.0.0, Culture=neutral, PublicKeyToken=ee75fc290dbc1176, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\JsonSubTypes.1.8.0\lib\net47\JsonSubTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=105.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+      <HintPath>..\..\packages\RestSharp.105.1.0\lib\net452\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -54,22 +69,11 @@ Contact: support@pb.com
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <HintPath Condition="Exists('..\packages')">..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <HintPath Condition="Exists('..\..\packages')">..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="JsonSubTypes">
-      <HintPath Condition="Exists('$(SolutionDir)\packages')">$(SolutionDir)\packages\JsonSubTypes.1.6.0\lib\net45\JsonSubTypes.dll</HintPath>
-      <HintPath Condition="Exists('..\packages')">..\packages\JsonSubTypes.1.6.0\lib\net45\JsonSubTypes.dll</HintPath>
-      <HintPath Condition="Exists('..\..\packages')">..\..\packages\JsonSubTypes.1.6.0\lib\net45\JsonSubTypes.dll</HintPath>
-      <HintPath Condition="Exists('..\..\vendor')">..\..\vendor\JsonSubTypes.1.6.0\lib\net45\JsonSubTypes.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AddressValidationApi.cs" />
     <Compile Include="Api\CarrierInfoApi.cs" />
+    <Compile Include="Api\DevelopersApi.cs" />
     <Compile Include="Api\ContainerApi.cs" />
     <Compile Include="Api\CrossBorderQuotesApi.cs" />
     <Compile Include="Api\ManifestsApi.cs" />
@@ -110,6 +114,8 @@ Contact: support@pb.com
     <Compile Include="Model\CarrierRule.cs" />
     <Compile Include="Model\CommodityInfo.cs" />
     <Compile Include="Model\ContainerDetails.cs" />
+    <Compile Include="Model\MerchantAccountsResponseSort.cs" />
+    <Compile Include="Model\MerchantAccountsResponse.cs" />
     <Compile Include="Model\ContainerManifestResponse.cs" />
     <Compile Include="Model\ContainerManifestResponseData.cs" />
     <Compile Include="Model\CrossBorderQuotesErrors.cs" />
@@ -145,6 +151,8 @@ Contact: support@pb.com
     <Compile Include="Model\DimensionRulesMinParcelDimensions.cs" />
     <Compile Include="Model\Discount.cs" />
     <Compile Include="Model\DocTabItem.cs" />
+    <Compile Include="Model\MerchantCarrierAccount.cs" />
+    <Compile Include="Model\Merchant.cs" />
     <Compile Include="Model\Document.cs" />
     <Compile Include="Model\DocumentPage.cs" />
     <Compile Include="Model\Errors.cs" />
@@ -156,6 +164,7 @@ Contact: support@pb.com
     <Compile Include="Model\ISOCountryCode.cs" />
     <Compile Include="Model\Manifest.cs" />
     <Compile Include="Model\PageRealTransactionDetailReport.cs" />
+    <Compile Include="Model\MerchantAccountAttribute.cs" />
     <Compile Include="Model\Parameter.cs" />
     <Compile Include="Model\Parcel.cs" />
     <Compile Include="Model\ParcelDimension.cs" />
@@ -219,8 +228,14 @@ Contact: support@pb.com
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="package.nuspec" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MsBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\NUnit.3.13.2\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NUnit.3.13.2\build\NUnit.props'))" />
+  </Target>
 </Project>

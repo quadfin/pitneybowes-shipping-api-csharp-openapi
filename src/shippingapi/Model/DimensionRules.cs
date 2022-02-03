@@ -39,7 +39,7 @@ namespace shippingapi.Model
         /// <param name="maxParcelDimensions">maxParcelDimensions.</param>
         /// <param name="minLengthPlusGirth">minLengthPlusGirth.</param>
         /// <param name="maxLengthPlusGirth">maxLengthPlusGirth.</param>
-        public DimensionRules(bool required = default(bool), string unitOfMeasurement = default(string), DimensionRulesMinParcelDimensions minParcelDimensions = default(DimensionRulesMinParcelDimensions), DimensionRulesMaxParcelDimensions maxParcelDimensions = default(DimensionRulesMaxParcelDimensions), int minLengthPlusGirth = default(int), int maxLengthPlusGirth = default(int))
+        public DimensionRules(bool required = default(bool), string unitOfMeasurement = default(string), DimensionRulesMinParcelDimensions minParcelDimensions = default(DimensionRulesMinParcelDimensions), DimensionRulesMaxParcelDimensions maxParcelDimensions = default(DimensionRulesMaxParcelDimensions), decimal minLengthPlusGirth = default(decimal), decimal maxLengthPlusGirth = default(decimal))
         {
             this.Required = required;
             this.UnitOfMeasurement = unitOfMeasurement;
@@ -77,13 +77,13 @@ namespace shippingapi.Model
         /// Gets or Sets MinLengthPlusGirth
         /// </summary>
         [DataMember(Name="minLengthPlusGirth", EmitDefaultValue=false)]
-        public int MinLengthPlusGirth { get; set; }
+        public decimal MinLengthPlusGirth { get; set; }
 
         /// <summary>
         /// Gets or Sets MaxLengthPlusGirth
         /// </summary>
         [DataMember(Name="maxLengthPlusGirth", EmitDefaultValue=false)]
-        public int MaxLengthPlusGirth { get; set; }
+        public decimal MaxLengthPlusGirth { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

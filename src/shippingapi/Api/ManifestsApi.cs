@@ -363,9 +363,12 @@ namespace shippingapi.Api
                 if (exception != null) throw exception;
             }
 
+            string queryParamString = string.Join("&", localVarPathParams.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList());
             return new ApiResponse<Manifest>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (Manifest) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)));
+                (Manifest)this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Manifest)),
+                $"{localVarPath}?{queryParamString}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                );
         }
 
         /// <summary>

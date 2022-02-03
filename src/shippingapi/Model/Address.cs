@@ -351,9 +351,9 @@ namespace shippingapi.Model
                     this.PostalCode.Equals(input.PostalCode))
                 ) && 
                 (
-                    this.Residential == input.Residential ||
+                    this.Residential == input.Residential /* ||
                     (this.Residential != null &&
-                    this.Residential.Equals(input.Residential))
+                    this.Residential.Equals(input.Residential)) */
                 ) && 
                 (
                     this.StateProvince == input.StateProvince ||

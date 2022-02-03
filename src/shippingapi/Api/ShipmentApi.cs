@@ -38,7 +38,7 @@ namespace shippingapi.Api
         /// <param name="cancelInitiator">Indicates that this refund request is initiated by the shipper. Set this to: SHIPPER (optional)</param>
         /// <param name="carrier">Conditional. The carrier. This is required if the carrier is not USPS (optional)</param>
         /// <returns>CancelShipment</returns>
-        CancelShipment CancelShipment (string xPBTransactionId, string shipmentId, string xPBUnifiedErrorStructure = default(string), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?));
+        CancelShipment CancelShipment (string xPBTransactionId, string shipmentId, bool? xPBUnifiedErrorStructure = default(bool?), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?));
 
         /// <summary>
         /// cancelShipment
@@ -54,7 +54,7 @@ namespace shippingapi.Api
         /// <param name="cancelInitiator">Indicates that this refund request is initiated by the shipper. Set this to: SHIPPER (optional)</param>
         /// <param name="carrier">Conditional. The carrier. This is required if the carrier is not USPS (optional)</param>
         /// <returns>ApiResponse of CancelShipment</returns>
-        ApiResponse<CancelShipment> CancelShipmentWithHttpInfo (string xPBTransactionId, string shipmentId, string xPBUnifiedErrorStructure = default(string), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?));
+        ApiResponse<CancelShipment> CancelShipmentWithHttpInfo (string xPBTransactionId, string shipmentId, bool? xPBUnifiedErrorStructure = default(bool?), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?));
         /// <summary>
         /// This operation creates a shipment and purchases a shipment label.
         /// </summary>
@@ -380,7 +380,7 @@ namespace shippingapi.Api
         /// <param name="cancelInitiator">Indicates that this refund request is initiated by the shipper. Set this to: SHIPPER (optional)</param>
         /// <param name="carrier">Conditional. The carrier. This is required if the carrier is not USPS (optional)</param>
         /// <returns>CancelShipment</returns>
-        public CancelShipment CancelShipment (string xPBTransactionId, string shipmentId, string xPBUnifiedErrorStructure = default(string), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?))
+        public CancelShipment CancelShipment (string xPBTransactionId, string shipmentId, bool? xPBUnifiedErrorStructure = default(bool?), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?))
         {
              ApiResponse<CancelShipment> localVarResponse = CancelShipmentWithHttpInfo(xPBTransactionId, shipmentId, xPBUnifiedErrorStructure, xPBShipperCarrierAccountId, cancelInitiator, carrier);
              return localVarResponse.Data;
@@ -397,7 +397,7 @@ namespace shippingapi.Api
         /// <param name="cancelInitiator">Indicates that this refund request is initiated by the shipper. Set this to: SHIPPER (optional)</param>
         /// <param name="carrier">Conditional. The carrier. This is required if the carrier is not USPS (optional)</param>
         /// <returns>ApiResponse of CancelShipment</returns>
-        public ApiResponse<CancelShipment> CancelShipmentWithHttpInfo (string xPBTransactionId, string shipmentId, string xPBUnifiedErrorStructure = default(string), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?))
+        public ApiResponse<CancelShipment> CancelShipmentWithHttpInfo (string xPBTransactionId, string shipmentId, bool? xPBUnifiedErrorStructure = default(bool?), string xPBShipperCarrierAccountId = default(string), string cancelInitiator = default(string), Carrier? carrier = default(Carrier?))
         {
             // verify the required parameter 'xPBTransactionId' is set
             if (xPBTransactionId == null)
@@ -454,9 +454,12 @@ namespace shippingapi.Api
                 if (exception != null) throw exception;
             }
 
+            string queryParamString = string.Join("&", localVarPathParams.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList());
             return new ApiResponse<CancelShipment>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (CancelShipment) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CancelShipment)));
+                (CancelShipment) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(CancelShipment)),
+                $"{localVarPath}?{queryParamString}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                );
         }
 
         /// <summary>
@@ -649,9 +652,12 @@ namespace shippingapi.Api
                 if (exception != null) throw exception;
             }
 
+            string queryParamString = string.Join("&", localVarPathParams.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList());
             return new ApiResponse<Shipment>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (Shipment) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
+                (Shipment) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)),
+                $"{localVarPath}?{queryParamString}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                );
         }
 
         /// <summary>
@@ -754,9 +760,12 @@ namespace shippingapi.Api
                 if (exception != null) throw exception;
             }
 
+            string queryParamString = string.Join("&", localVarPathParams.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList());
             return new ApiResponse<Shipment>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (Shipment) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)));
+                (Shipment) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Shipment)),
+                $"{localVarPath}?{queryParamString}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                );
         }
 
         /// <summary>

@@ -24,12 +24,39 @@ using OpenAPIDateConverter = shippingapi.Client.OpenAPIDateConverter;
 
 namespace shippingapi.Model
 {
+    //
+    // Use a custom string converter to intercept unknown values from the web service
+    //
+    public class ParcelTypeEnumConverter : StringEnumConverter
+    {
+        public ParcelType? DefaultValue { get { return default(ParcelType); } }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            try
+            {
+                switch ($"{reader.Value}")
+                {
+                    case "LGENV-IMB": return ParcelType.LGENV;
+                    case "LTR-IMB": return ParcelType.LTR;
+                }
+
+                return base.ReadJson(reader, objectType, existingValue, serializer);
+            }
+            catch (JsonSerializationException)
+            {
+                return DefaultValue;
+            }
+        }
+    }
+
     /// <summary>
     /// * LETTER -  Letter. Generates a First-Class label with IMB barcode.  * FRE - Flat rate envelope. * LGENV - Legal flat rate envelope. * LGLFRENV - Padded flat rate envelope. * PFRENV - Small flat rate box. * SFRB - Medium flat rate box. * FRB - Large Flat rate box. * LFRB - DVD box. * DVDBOX - DVDBOX. * VIDEOBOX - Video box. * MLFRB - Military flat raqte box. * RBA - Regional rate box, type A * RBB -  Regional rate box, type B. * PKG - Package (not eligible for special package rate). * LP - Large package. * FLAT - USPS Flat or Large Envelope. * EMMTB - Extended Managed Mail Tray Box. * FTB - Full tray box. * HTB - Half tray box. * SACK - Sack. * FTTB - Flat tub tray. * SOFTPACK - Soft Pack Envelope. * MIX - PMOD Enclosed Package Type. * LTR - Letter for stamp API call. 
     /// </summary>
     /// <value>* LETTER -  Letter. Generates a First-Class label with IMB barcode.  * FRE - Flat rate envelope. * LGENV - Legal flat rate envelope. * LGLFRENV - Padded flat rate envelope. * PFRENV - Small flat rate box. * SFRB - Medium flat rate box. * FRB - Large Flat rate box. * LFRB - DVD box. * DVDBOX - DVDBOX. * VIDEOBOX - Video box. * MLFRB - Military flat raqte box. * RBA - Regional rate box, type A * RBB -  Regional rate box, type B. * PKG - Package (not eligible for special package rate). * LP - Large package. * FLAT - USPS Flat or Large Envelope. * EMMTB - Extended Managed Mail Tray Box. * FTB - Full tray box. * HTB - Half tray box. * SACK - Sack. * FTTB - Flat tub tray. * SOFTPACK - Soft Pack Envelope. * MIX - PMOD Enclosed Package Type. * LTR - Letter for stamp API call. </value>
-    
-    [JsonConverter(typeof(StringEnumConverter))]
+
+    //[JsonConverter(typeof(StringEnumConverter))]
+    [JsonConverter(typeof(ParcelTypeEnumConverter))]
     
     public enum ParcelType
     {

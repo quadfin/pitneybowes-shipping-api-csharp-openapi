@@ -33,7 +33,7 @@ namespace shippingapi.Model
         /// <summary>
         /// Gets or Sets SpecialServiceCodes
         /// </summary>
-        [DataMember(Name="specialServiceCodes", EmitDefaultValue=false)]
+        [DataMember(Name="specialServiceId", EmitDefaultValue=false)]
         public SpecialServiceCodes? SpecialServiceCodes { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PrerequisiteRules" /> class.

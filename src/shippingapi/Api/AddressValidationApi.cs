@@ -320,7 +320,9 @@ namespace shippingapi.Api
 
             return new ApiResponse<Address>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                (Address) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Address)));
+                (Address) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Address)),
+                $"{localVarPath}?{localVarPathParams}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                );
         }
 
         /// <summary>
