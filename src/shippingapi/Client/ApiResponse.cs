@@ -43,6 +43,12 @@ namespace shippingapi.Client
         public string HttpRequestUrl { get; private set; }
 
         /// <summary>
+        /// Gets or sets the request headers as a string
+        /// </summary>
+        /// <value>The request HTTP headers.</value>
+        public string HttpRequestHeaders { get; private set; }
+
+        /// <summary>
         /// Gets or sets the raw request body (Raw HTTP request body)
         /// </summary>
         /// <value>The raw request.</value>
@@ -61,14 +67,16 @@ namespace shippingapi.Client
         /// <param name="headers">HTTP headers.</param>
         /// <param name="data">Data (parsed HTTP body)</param>
         /// <param name="httpRequestUrl">HTTP request URL</param>
+        /// <param name="httpRequestHeaders">HTTP request headers</param>
         /// <param name="httpRequestBody">HTTP request body</param>
         /// <param name="httpResponseBody">HTTP response body</param>
-        public ApiResponse(int statusCode, IDictionary<string, string> headers, T data, string httpRequestUrl = null, string httpRequestBody = null, string httpResponseBody = null)
+        public ApiResponse(int statusCode, IDictionary<string, string> headers, T data, string httpRequestUrl = null, string httpRequestHeaders = null, string httpRequestBody = null, string httpResponseBody = null)
         {
             this.StatusCode= statusCode;
             this.Headers = headers;
             this.Data = data;
             this.HttpRequestUrl = httpRequestUrl;
+            this.HttpRequestHeaders = httpRequestHeaders;
             this.HttpRequestBody = httpRequestBody;
             this.HttpResponseBody = httpResponseBody;
         }

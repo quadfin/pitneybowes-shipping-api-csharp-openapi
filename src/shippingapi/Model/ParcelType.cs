@@ -29,7 +29,7 @@ namespace shippingapi.Model
     //
     public class ParcelTypeEnumConverter : StringEnumConverter
     {
-        public ParcelType? DefaultValue { get { return default(ParcelType); } }
+        public ParcelType? DefaultValue { get { return ParcelType.PKG; /* default(ParcelType); */ } }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
@@ -39,6 +39,7 @@ namespace shippingapi.Model
                 {
                     case "LGENV-IMB": return ParcelType.LGENV;
                     case "LTR-IMB": return ParcelType.LTR;
+                    case "PC": return ParcelType.PKG;
                 }
 
                 return base.ReadJson(reader, objectType, existingValue, serializer);

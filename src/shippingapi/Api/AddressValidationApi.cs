@@ -311,17 +311,26 @@ namespace shippingapi.Api
                 localVarPathParams, localVarHttpContentType);
 
             int localVarStatusCode = (int) localVarResponse.StatusCode;
+            string requestUrl = $"POST {localVarPath}?" + string.Join("&", localVarQueryParams.Select(kvp => $"{kvp.Key}={kvp.Value}").ToList());
+            string requestHeaders = string.Join("; ", localVarHeaderParams.Select(kvp => $"{kvp.Key}: {kvp.Value}"));
+            string requestBody = localVarPostBody?.ToString() ?? string.Empty;
 
             if (ExceptionFactory != null)
             {
-                Exception exception = ExceptionFactory("VerifyAddress", localVarResponse);
-                if (exception != null) throw exception;
+                ApiException exception = ExceptionFactory("VerifyAddress", localVarResponse);
+                if (exception != null)
+                {
+                    exception.RequestUrl = requestUrl;
+                    exception.RequestHeaders = requestHeaders;
+                    exception.RequestBody = requestBody;
+                    throw exception;
+                }
             }
 
             return new ApiResponse<Address>(localVarStatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
                 (Address) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(Address)),
-                $"{localVarPath}?{localVarPathParams}", localVarPostBody?.ToString() ?? string.Empty, localVarResponse.Content
+                requestUrl, requestHeaders, requestBody, localVarResponse.Content
                 );
         }
 

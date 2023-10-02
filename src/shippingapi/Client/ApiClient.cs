@@ -64,8 +64,6 @@ namespace shippingapi.Client
         /// <summary>
         /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
         /// </summary>
-        /// <param name="request">The RestSharp request object</param>
-        /// <param name="response">The RestSharp response object</param>
         IRestResponse InterceptResponse(IRestRequest request, IRestResponse response)
         {
             RestClient client = new RestClient();

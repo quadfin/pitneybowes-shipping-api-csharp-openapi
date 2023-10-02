@@ -33,8 +33,8 @@ Contact: support@pb.com
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\shippingapiv2.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
-    <NoWarn>CS1591,IDE0034,IDE0044,IDE1006,IDE0038,IDE0017,IDE0059</NoWarn>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <NoWarn>CS0472,CS1591,IDE0034,IDE0044,IDE1006,IDE0038,IDE0017,IDE0059</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,11 +47,14 @@ Contact: support@pb.com
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+    </Reference>
     <Reference Include="JsonSubTypes, Version=1.8.0.0, Culture=neutral, PublicKeyToken=ee75fc290dbc1176, processorArchitecture=MSIL">
       <HintPath>..\..\packages\JsonSubTypes.1.8.0\lib\net47\JsonSubTypes.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.13.2.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.13.2\lib\net45\nunit.framework.dll</HintPath>
@@ -114,6 +117,7 @@ Contact: support@pb.com
     <Compile Include="Model\CarrierRule.cs" />
     <Compile Include="Model\CommodityInfo.cs" />
     <Compile Include="Model\ContainerDetails.cs" />
+    <Compile Include="Model\TolerantEnumConverter.cs" />
     <Compile Include="Model\MerchantAccountsResponseSort.cs" />
     <Compile Include="Model\MerchantAccountsResponse.cs" />
     <Compile Include="Model\ContainerManifestResponse.cs" />

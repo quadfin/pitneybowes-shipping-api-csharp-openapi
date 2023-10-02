@@ -38,6 +38,7 @@ namespace shippingapi.Model
                 switch ($"{reader.Value}")
                 {
                     case "PMC": return Services.PM; // TODO: is this correct?
+                    case "PRCLSELC": return Services.PRCLSEL; // TODO: is this correct?
                 }
 
                 return base.ReadJson(reader, objectType, existingValue, serializer);
@@ -303,8 +304,12 @@ namespace shippingapi.Model
         /// Enum XPDFREIGHT for value: XPD_FREIGHT
         /// </summary>
         [EnumMember(Value = "XPD_FREIGHT")]
-        XPDFREIGHT = 41
+        XPDFREIGHT = 41,
 
+        /// <summary>
+        /// Enum UGA for value: UGA
+        /// </summary>
+        [EnumMember(Value = "UGA")]
+        UGA = 42
     }
-
 }

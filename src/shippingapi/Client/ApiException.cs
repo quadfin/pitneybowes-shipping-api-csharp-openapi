@@ -30,6 +30,24 @@ namespace shippingapi.Client
         public dynamic ErrorContent { get; private set; }
 
         /// <summary>
+        /// Gets or sets the request url
+        /// </summary>
+        /// <value>The request url.</value>
+        public string RequestUrl { get; set; }
+
+        /// <summary>
+        /// Gets or sets the request headers
+        /// </summary>
+        /// <value>The request HTTP headers.</value>
+        public string RequestHeaders { get; set; }
+
+        /// <summary>
+        /// Gets or sets the request body (body json object)
+        /// </summary>
+        /// <value>The request content (Http request body).</value>
+        public string RequestBody { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ApiException"/> class.
         /// </summary>
         public ApiException() {}
